@@ -1,0 +1,6 @@
+{
+  "pack": {
+    "pack_format": 15,
+    "description": "Adds the `afk` tag to players that haven't moved in a while"
+  }
+}
