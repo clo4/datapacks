@@ -14,5 +14,5 @@ execute as @a[scores={afk.is_in_same_pos=0}] run scoreboard players set @s afk.l
 scoreboard players set @a afk.is_in_same_pos 0
 
 # Magic numbers: 180s delay / 5s intervals = 36 loops
-execute as @a[scores={afk.loops_not_moved=36..},tag=!afk] at @s run function #afk:away
-execute as @a[scores={afk.loops_not_moved=..35},tag=afk] at @s run function #afk:back
+execute as @a[scores={afk.loops_not_moved=36..},tag=!afk] at @s run function afk:tag/away
+execute as @a[scores={afk.loops_not_moved=..35},tag=afk] at @s run function afk:tag/back
