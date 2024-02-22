@@ -1,5 +1,3 @@
 {
-  "values": [
-    "afk_team:load"
-  ]
+  "values": ["afk_team:load"]
 }
