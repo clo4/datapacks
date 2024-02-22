@@ -1,0 +1,34 @@
+{
+  "folders": [
+    { "path": "." },
+    { "path": "afk" },
+    { "path": "afk-sleep" },
+    { "path": "afk-team" },
+    { "path": "afk-announce" }
+  ],
+  "settings": {
+    // Keep this in sync with the folders above. Not using a glob
+    // because it allows you to create new datapacks and *not*
+    // have them instantly disappear from the workspace.
+    "files.exclude": {
+      "afk": true,
+      "afk-sleep": true,
+      "afk-team": true,
+      "afk-announce": true
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true
+  },
+  "extensions": {
+    "recommendations": [
+      "spgoding.datapack-language-server",
+      "esbenp.prettier-vscode",
+      "bbenoist.nix"
+    ]
+  }
+}
