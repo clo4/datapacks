@@ -30,6 +30,21 @@ AFK, and removes it when they return. This allows you to detect AFK players
 without having to install any other datapacks, making it very easy to integrate
 with.
 
+### afk-sleep: Sleep while players are AFK
+
+Changes the `playersSleepingPercentage` to allow sleeping while there are AFK
+players on the server.
+
+When the datapack is initially installed, the `playersSleepingPercentage` is
+stored and used as _the percentage of players that aren't AFK_ that need to
+sleep for a night to pass.
+
+| Players online | Players not AFK | Initial playersSleepingPercentage | Players required to pass a night |
+| -------------- | --------------- | --------------------------------- | -------------------------------- |
+| 3              | 3               | 100%                              | 3                                |
+| 3              | 2               | 100%                              | 2                                |
+| 3              | 2               | 50%                               | 1                                |
+
 ### afk-announce: Announce status to server
 
 Using this datapack will announce to all players on the server when someone
@@ -73,5 +88,6 @@ If you're interested in contributing, some stuff you might be interested in
 adding is:
 
 - More examples and simple packs. I'd love to see some cool uses for this.
-- Performance improvements. NBT is only checked once per player every 100 ticks, maybe you can do even better or optimize something else!
+- Performance improvements. NBT is only checked once per player every 100 ticks,
+  maybe you can do even better or optimize something else!
 - Configuration
