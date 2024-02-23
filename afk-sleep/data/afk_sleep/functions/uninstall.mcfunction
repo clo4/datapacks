@@ -1,0 +1,2 @@
+scoreboard objectives remove afk_sleep.dummy
+data remove storage afk_sleep:set_percentage_args percent
