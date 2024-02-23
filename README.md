@@ -17,6 +17,18 @@ This repository contains optional add-on datapacks, such as
 [announcing player status to the server](#afk-announce-announce-status-to-server)
 and [coloring AFK player names gray](#afk-team-color-names-of-afk-players).
 
+## Table of Contents
+
+- [afk, a Minecraft datapack to detect AFK players](#afk-a-minecraft-datapack-to-detect-afk-players)
+  - [Table of Contents](#table-of-contents)
+  - [Datapacks](#datapacks)
+    - [afk](#afk)
+    - [afk-sleep: Sleep while players are AFK](#afk-sleep-sleep-while-players-are-afk)
+    - [afk-announce: Announce status to server](#afk-announce-announce-status-to-server)
+    - [afk-team: Color names of AFK players](#afk-team-color-names-of-afk-players)
+  - [Documentation](#documentation)
+  - [Contributing](#contributing)
+
 ## Datapacks
 
 ### afk
@@ -66,13 +78,13 @@ the player's position.
 The example below is a very simple datapack that kicks AFK players if they
 aren't specatating.
 
-###### kick-afk-players/data/afk/tags/functions/away.json
+**kick-afk-players/data/afk/tags/functions/away.json**
 
 ```json
 { "values": ["afk_kick:kick"] }
 ```
 
-###### kick-afk-players/data/afk_kick/functions/kick.mcfunction
+**kick-afk-players/data/afk_kick/functions/kick.mcfunction**
 
 ```mcfunction
 execute if entity @s[gamemode=!spectator] run kick @s AFK
