@@ -37,10 +37,9 @@ The base **afk** datapack implements the AFK behavior, acting as a library for
 other datapacks. Players are treated as AFK after not touching the mouse for
 between 180 and 185 seconds (about 3 minutes).
 
-This datapack also gives non-spectator players the `afk` tag when they become
-AFK, and removes it when they return. This allows you to detect AFK players
-without having to install any other datapacks, making it very easy to integrate
-with.
+This datapack also gives players the `afk` tag when they become AFK, and removes
+it when they return. This allows you to detect AFK players without having to
+install any other datapacks, making it very easy to integrate with.
 
 ### afk-sleep: Sleep while players are AFK
 
