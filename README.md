@@ -24,8 +24,8 @@ and [coloring AFK player names gray](#afk-team-color-names-of-afk-players).
   - [Datapacks](#datapacks)
     - [afk](#afk)
     - [afk-sleep: Sleep while players are AFK](#afk-sleep-sleep-while-players-are-afk)
-    - [afk-announce: Announce status to server](#afk-announce-announce-status-to-server)
-    - [afk-team: Color names of AFK players](#afk-team-color-names-of-afk-players)
+    - [afk-message: Announce status to server](#afk-message-announce-status-to-server)
+    - [afk-dimmed-names: Color names of AFK players](#afk-dimmed-names-color-names-of-afk-players)
   - [Documentation](#documentation)
   - [Contributing](#contributing)
 
@@ -56,14 +56,14 @@ sleep for a night to pass.
 | 3              | 2               | 100%                              | 2                                |
 | 3              | 2               | 50%                               | 1                                |
 
-### afk-announce: Announce status to server
+### afk-message: Announce status to server
 
 Using this datapack will announce to all players on the server when someone
 becomes AFK or returns to the game.
 
 ![Two chat messages: "clo4_ is now AFK", and "clo4_ is no longer AFK!"](assets/afk-announce.png)
 
-### afk-team: Color names of AFK players
+### afk-dimmed-names: Color names of AFK players
 
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.

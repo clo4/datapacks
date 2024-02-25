@@ -1,10 +1,10 @@
 {
   "folders": [
     { "path": "." },
-    { "path": "afk" },
-    { "path": "afk-sleep" },
-    { "path": "afk-team" },
-    { "path": "afk-announce" }
+    { "path": "afk", "name": "Detect AFK Players" },
+    { "path": "afk-sleep", "name": "AFK Sleep" },
+    { "path": "afk-dimmed-names", "name": "AFK Dimmed Names" },
+    { "path": "afk-message", "name": "AFK Message" }
   ],
   "settings": {
     // Keep this in sync with the folders above. Not using a glob
@@ -13,8 +13,8 @@
     "files.exclude": {
       "afk": true,
       "afk-sleep": true,
-      "afk-team": true,
-      "afk-announce": true
+      "afk-dimmed-names": true,
+      "afk-message": true
     },
     "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
