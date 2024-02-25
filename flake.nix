@@ -16,6 +16,8 @@
       devShell = pkgs.mkShell {
         packages = with pkgs; [
           nodePackages_latest.prettier
+          zip
+          jq
         ];
       };
     });
