@@ -1,3 +1,3 @@
 {
-  "values": ["afk_announce:away"]
+  "values": ["afk_message:away"]
 }
