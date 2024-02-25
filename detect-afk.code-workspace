@@ -3,7 +3,7 @@
     { "path": "." },
     { "path": "afk", "name": "Detect AFK Players" },
     { "path": "afk-sleep", "name": "AFK Sleep" },
-    { "path": "afk-dimmed-names", "name": "AFK Dimmed Names" },
+    { "path": "afk-dim-names", "name": "AFK Dim Names" },
     { "path": "afk-message", "name": "AFK Message" }
   ],
   "settings": {
@@ -13,7 +13,7 @@
     "files.exclude": {
       "afk": true,
       "afk-sleep": true,
-      "afk-dimmed-names": true,
+      "afk-dim-names": true,
       "afk-message": true
     },
     "[json]": {
