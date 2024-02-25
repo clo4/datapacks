@@ -1,54 +1,51 @@
-# afk, a Minecraft datapack to detect AFK players
+# Detect AFK Players (and all its first-party add-ons)
 
-A simple way to detect AFK players for **vanilla** or **lightly modded**
-servers, or to **integrate with other datapacks**.
+A simple way to detect AFK players for vanilla or modded servers, which allows
+you to build additional social signalling mechanics and improve the experience
+for all players.
 
 Players are marked as AFK (`afk`) after 3 minutes of without moving the mouse.
 
-> **Why did I make this?** I needed this to toggle `doDaylightCycle` when either
-> no players are on, or all players are AFK. There's no good and _simple_
-> solution, so I made one.
-
-It's easy to integrate with too! AFK players are tagged as `afk`, and you can
+It's easy to integrate with, too! AFK players are tagged as `afk`, and you can
 use the `#afk:away` and `#afk:back` function tags to implement your own
 functions.
 
-This repository contains optional add-on datapacks, such as
-[announcing player status to the server](#afk-announce-announce-status-to-server)
-and [coloring AFK player names gray](#afk-team-color-names-of-afk-players).
-
 This is a server utility. I value composability over functionality, preferring
 to have less built in to the datapack and allowing you to build the features you
-need on top of it. If you don't want advancements, or announcements, or
-sleeping, or _whatever_, you can just pick the features you _do_ want and use
-them without any issues or complicated mess trying to remove them from someone
-else's datapack.
+need on top of it. If you don't want announcements, or sleeping, or _whatever_,
+you can just pick the features you _do_ want and use them without any issues or
+having to edit a complicated mess while trying to remove them from an existing
+datapack. Instead, each piece of functionality is self contained and performant.
 
 ## Table of Contents
 
-- [afk, a Minecraft datapack to detect AFK players](#afk-a-minecraft-datapack-to-detect-afk-players)
+- [Detect AFK Players (and all its first-party add-ons)](#detect-afk-players-and-all-its-first-party-add-ons)
   - [Table of Contents](#table-of-contents)
   - [Datapacks](#datapacks)
-    - [afk](#afk)
-    - [afk-sleep: Sleep while players are AFK](#afk-sleep-sleep-while-players-are-afk)
-    - [afk-message: Announce status to server](#afk-message-announce-status-to-server)
-    - [afk-dimmed-names: Color names of AFK players](#afk-dimmed-names-color-names-of-afk-players)
+    - [Detect AFK Players](#detect-afk-players)
+    - [AFK Sleep: Sleep while players are AFK](#afk-sleep-sleep-while-players-are-afk)
+    - [AFK Message: Announce status to server](#afk-message-announce-status-to-server)
+    - [AFK Dim Names: Color names of AFK players](#afk-dim-names-color-names-of-afk-players)
   - [Documentation](#documentation)
   - [Contributing](#contributing)
 
 ## Datapacks
 
-### afk
+### Detect AFK Players
 
-The base **afk** datapack implements the AFK behavior, acting as a library for
-other datapacks. Players are treated as AFK after not touching the mouse for
-between 180 and 185 seconds (about 3 minutes).
+[View on Modrinth](https://modrinth.com/datapack/detect-afk)
+
+The base **afk** datapack implements the AFK detection behavior, acting as a
+library for other datapacks. Players are treated as AFK after not touching the
+mouse for between 180 and 185 seconds (about 3 minutes).
 
 This datapack also gives players the `afk` tag when they become AFK, and removes
 it when they return. This allows you to detect AFK players without having to
 install any other datapacks, making it very easy to integrate with.
 
-### afk-sleep: Sleep while players are AFK
+### AFK Sleep: Sleep while players are AFK
+
+[View on Modrinth](https://modrinth.com/datapack/afk-sleep)
 
 Changes the `playersSleepingPercentage` to allow sleeping while there are AFK
 players on the server.
@@ -63,14 +60,16 @@ sleep for a night to pass.
 | 3              | 2               | 100%                              | 2                                |
 | 3              | 2               | 50%                               | 1                                |
 
-### afk-message: Announce status to server
+### AFK Message: Announce status to server
+
+[View on Modrinth](https://modrinth.com/datapack/afk-message)
 
 Using this datapack will announce to all players on the server when someone
 becomes AFK or returns to the game.
 
-![Two chat messages: "clo4_ is now AFK", and "clo4_ is no longer AFK!"](assets/afk-announce.png)
+### AFK Dim Names: Color names of AFK players
 
-### afk-dimmed-names: Color names of AFK players
+[View on Modrinth](https://modrinth.com/datapack/afk-dim-names)
 
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
@@ -98,14 +97,11 @@ execute if entity @s[gamemode=!spectator] run kick @s AFK
 
 ## Contributing
 
-I don't need anything more from this datapack myself, but I'm happy to add
-additional features and accept pull requests containing simple or useful
-features or add-ons!
+As the pack is right now, I don't need anything more from it myself, and I don't
+find myself motivated to work on things that I don't need. If you have some
+ideas for additional functionality, you're welcome to contribute it!
 
-If you're interested in contributing, some stuff you might be interested in
-adding is:
-
-- More examples and simple packs. I'd love to see some cool uses for this.
-- Performance improvements. NBT is only checked once per player every 100 ticks,
-  maybe you can do even better or optimize something else!
-- Configuration
+If you're on an operating system where bash is available, the build script is
+executable as `./build.sh`. All the required development tools are included in
+the Nix flake via `nix develop` (but if you're not using Nix, make sure you have
+`jq` and `zip` available). Data files are formatted with Prettier.
