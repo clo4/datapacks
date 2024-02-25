@@ -1,0 +1,1 @@
+tellraw @a [{ "text": "[AFK] ", "color": "gray", "hoverEvent": { "action": "show_text", "contents": "Player hasn't moved their mouse for 3 minutes" }}, { "selector": "@s", "color": "white" }, { "text": " is away", "color": "white" }]
