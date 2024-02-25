@@ -17,6 +17,13 @@ This repository contains optional add-on datapacks, such as
 [announcing player status to the server](#afk-announce-announce-status-to-server)
 and [coloring AFK player names gray](#afk-team-color-names-of-afk-players).
 
+This is a server utility. I value composability over functionality, preferring
+to have less built in to the datapack and allowing you to build the features you
+need on top of it. If you don't want advancements, or announcements, or
+sleeping, or _whatever_, you can just pick the features you _do_ want and use
+them without any issues or complicated mess trying to remove them from someone
+else's datapack.
+
 ## Table of Contents
 
 - [afk, a Minecraft datapack to detect AFK players](#afk-a-minecraft-datapack-to-detect-afk-players)

@@ -1,7 +1,7 @@
 # The formula for getting the percentage as a number between 0 and 100 is this:
 # (notAFK * relativePercentage) / totalPlayers
 
-advancement revoke @s only afk_sleep:trigger_when_sleeping
+advancement revoke @s only afk_sleep:enter_bed
 
 # .notAFK could be stored directly into .playersSleepingPercentage, but it's useful
 # for debugging to keep it separate so you can see the calculation.
