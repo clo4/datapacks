@@ -39,7 +39,7 @@ for pack in $packs; do
 
   # Specifying the files to include means I can put assets in the folders in the future
   # and not worry about them being included in the final zips.
-  zip -r $wd/dist/$name+v$packversion+mc$mc0-$mc1.zip data pack.mcmeta
+  zip -r $wd/dist/$name+v$packversion+mc$mc0-$mc1.zip data pack.mcmeta pack.png
 
   echo
 done
