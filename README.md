@@ -113,6 +113,19 @@ becomes AFK or returns to the game.
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
 
+To set the team the players will be restored to, run the following command,
+substituting where necessary:
+
+```mcfunction
+/function afk_team:admin/set_restored_team {"name": "NAME_OF_TEAM_HERE"}
+```
+
+To remove the team, run this:
+
+```mcfunction
+/function afk_team:admin/remove_team
+```
+
 ## Contributing
 
 I value composability over functionality, preferring to have less built in to
@@ -120,6 +133,9 @@ datapacks and allowing you to build the features you need on top of it. Each
 piece of functionality can be small and performant, and they can be combined
 together to create something more complicated without sacrificing on
 maintainability or performance.
+
+As a convention, commands intended to be user-runnable should be in an `admin`
+directory.
 
 I typically only work on what I feel motivated to work on, because this isn't my
 job. I just do it for fun and to make my own life easier. But if there's a
