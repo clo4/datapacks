@@ -5,6 +5,8 @@
     { "path": "afk-sleep", "name": "AFK Sleep" },
     { "path": "afk-dim-names", "name": "AFK Dim Names" },
     { "path": "afk-message", "name": "AFK Message" },
+    { "path": "pause-day-cycle", "name": "Pause Day Cycle" },
+    { "path": "chickenfix", "name": "Chickenfix" }
   ],
   "settings": {
     // Keep this in sync with the folders above. Not using a glob
@@ -15,23 +17,25 @@
       "afk-sleep": true,
       "afk-dim-names": true,
       "afk-message": true,
+      "pause-day-cycle": true,
+      "chickenfix": true
     },
     "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[jsonc]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[markdown]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": true
   },
   "extensions": {
     "recommendations": [
       "spgoding.datapack-language-server",
       "esbenp.prettier-vscode",
-      "bbenoist.nix",
-    ],
-  },
+      "bbenoist.nix"
+    ]
+  }
 }

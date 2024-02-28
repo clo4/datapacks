@@ -1,0 +1,1 @@
+scoreboard objectives remove pause_day_cycle.dummy
