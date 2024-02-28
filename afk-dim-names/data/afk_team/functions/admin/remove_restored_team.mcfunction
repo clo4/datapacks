@@ -1,1 +1,0 @@
-data remove storage afk_team:team name
