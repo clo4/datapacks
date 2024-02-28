@@ -37,9 +37,13 @@ for pack in $packs; do
   # zip really wants to include the dir heirarchy, so we have to cd into the directory
   cd $dir
 
+  cp ../LICENSE .
+
   # Specifying the files to include means I can put assets in the folders in the future
   # and not worry about them being included in the final zips.
-  zip -r $wd/dist/$name+v$packversion+mc$mc0-$mc1.zip data pack.mcmeta pack.png
+  zip -r $wd/dist/$name+v$packversion+mc$mc0-$mc1.zip LICENSE data pack.mcmeta pack.png
+
+  rm LICENSE
 
   echo
 done
