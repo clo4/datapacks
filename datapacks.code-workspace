@@ -1,6 +1,6 @@
 {
   "folders": [
-    { "path": "." },
+    { "path": ".", "name": "clo4's Datapacks" },
     { "path": "afk", "name": "Detect AFK Players" },
     { "path": "afk-sleep", "name": "AFK Sleep" },
     { "path": "afk-dim-names", "name": "AFK Dim Names" },
