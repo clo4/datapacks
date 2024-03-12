@@ -33,6 +33,10 @@ for pack in $packs; do
   packversion=$(jq -r .version $dir/version.json)
   mc0=$(jq -r .minecraft[0] $dir/version.json)
   mc1=$(jq -r .minecraft[1] $dir/version.json)
+  
+  if ! git diff --quiet --exit-code $dir; then
+    name+="__DIRTY__DO_NOT_RELEASE"
+  fi
 
   # zip really wants to include the dir heirarchy, so we have to cd into the directory
   cd $dir
