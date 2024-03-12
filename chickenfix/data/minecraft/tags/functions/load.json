@@ -1,6 +1,3 @@
 {
-  "values": [
-    "chickenfix:load",
-    "chickenfix:loop"
-  ]
+  "values": ["chickenfix:load", "chickenfix:loop"]
 }
