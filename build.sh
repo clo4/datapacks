@@ -50,8 +50,6 @@ for dir in $(ls build); do
     name+="__DIRTY__DO_NOT_RELEASE"
   fi
 
-  cp $wd/LICENSE .
-
   # TODO: Gate on whether pack version 45 is below max and above min
   # This duplicates the function/advancement directories, which makes
   # the structure compatible with older versions
