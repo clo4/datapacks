@@ -13,12 +13,54 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       formatter = pkgs.alejandra;
-      devShell = pkgs.mkShell {
-        packages = with pkgs; [
-          nodePackages_latest.prettier
-          zip
-          jq
-        ];
+      packages = let
+        callDataPack = path: args: pkgs.callPackage path ({inherit buildDataPack;} // args);
+        buildDataPack = args:
+          pkgs.stdenvNoCC.mkDerivation (args
+            // {
+              version = args.version;
+              nativeBuildInputs = [pkgs.zip];
+
+              buildPhase = ''
+                runHook preBuild
+                # I don't love this but for most people I think they might assume
+                # something is weird or wrong if the modification time for all the files
+                # in the zip is 1970. This is for Minecraft players, not Nix developers
+                touch **
+                zip -r datapack.zip $zip
+                runHook postBuild
+              '';
+
+              checkPhase = ''
+                test -f datapack.zip
+              '';
+
+              installPhase = ''
+                mkdir -p $out/datapacks
+                mv datapack.zip $out/datapacks/$pname+$version+mc$minMinecraftVersion-$maxMinecraftVersion.zip
+              '';
+            });
+      in rec {
+        afk = callDataPack ./afk {};
+        afk-sleep = callDataPack ./afk-sleep {};
+        afk-message = callDataPack ./afk-message {};
+        afk-dim-names = callDataPack ./afk-dim-names {};
+        pause-day-cycle = callDataPack ./pause-day-cycle {};
+        chickenfix = callDataPack ./chickenfix {};
+
+        # Check if this is right
+        all = pkgs.symlinkJoin {
+          name = "clo4-datapacks";
+          paths = [
+            afk
+            afk-sleep
+            afk-message
+            afk-dim-names
+            pause-day-cycle
+            chickenfix
+          ];
+        };
+        default = all;
       };
     });
 }
