@@ -13,8 +13,10 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       formatter = pkgs.alejandra;
+
       packages = let
         callDataPack = path: args: pkgs.callPackage path ({inherit buildDataPack;} // args);
+
         buildDataPack = args:
           pkgs.stdenvNoCC.mkDerivation (args
             // {
@@ -40,6 +42,22 @@
                 mv datapack.zip $out/datapacks/$pname+$version+mc$minMinecraftVersion-$maxMinecraftVersion.zip
               '';
             });
+
+        # Based on the definition of symlinkJoin but specific to merging datapacks.
+        # This makes releasing and testing a bit simpler
+        joinDataPacks = args_ @ {
+          name,
+          packages,
+          ...
+        }: let
+          args = removeAttrs args_ ["name"] // {passAsFile = ["packages"];};
+        in
+          pkgs.runCommand name args ''
+            mkdir -p $out/datapacks
+            for path in $(cat $packagesPath); do
+              cp $path/datapacks/* $out/datapacks
+            done
+          '';
       in rec {
         afk = callDataPack ./afk {};
         afk-sleep = callDataPack ./afk-sleep {};
@@ -49,9 +67,10 @@
         chickenfix = callDataPack ./chickenfix {};
 
         # Check if this is right
-        all = pkgs.symlinkJoin {
+        default = all;
+        all = joinDataPacks {
           name = "clo4-datapacks";
-          paths = [
+          packages = [
             afk
             afk-sleep
             afk-message
@@ -60,7 +79,6 @@
             chickenfix
           ];
         };
-        default = all;
       };
     });
 }
