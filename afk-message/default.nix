@@ -2,7 +2,7 @@
 buildDataPack {
   pname = "afk-message";
   version = "1.0.1";
-  minMinecraftVersion = "1.16.x";
+  minMinecraftVersion = "1.18.x";
   maxMinecraftVersion = "1.21.0";
 
   src = ./.;
