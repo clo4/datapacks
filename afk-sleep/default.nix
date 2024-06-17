@@ -2,7 +2,7 @@
 buildDataPack {
   pname = "afk-sleep";
   version = "1.2.1";
-  minMinecraftVersion = "1.20.2";
+  minMinecraftVersion = "1.18.x";
   maxMinecraftVersion = "1.21.0";
 
   src = ./.;
@@ -14,6 +14,7 @@ buildDataPack {
       cp -r $dir ''${dir}s
     done
     popd
+    patch -p0 -f -i clumsy_no_macro_compat.patch
   '';
 
   zip = [
