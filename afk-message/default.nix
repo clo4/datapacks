@@ -1,7 +1,7 @@
 {buildDataPack}:
 buildDataPack {
   pname = "afk-message";
-  version = "1.1.1";
+  version = "1.0.1";
   minMinecraftVersion = "1.16.x";
   maxMinecraftVersion = "1.21.0";
 

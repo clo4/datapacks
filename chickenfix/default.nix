@@ -1,7 +1,7 @@
 {buildDataPack}:
 buildDataPack {
   pname = "chickenfix";
-  version = "1.2.1";
+  version = "1.1.1";
   minMinecraftVersion = "1.13.x";
   maxMinecraftVersion = "1.21.0";
 
