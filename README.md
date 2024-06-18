@@ -115,18 +115,25 @@ bottom of the player list.
 
 ## Contributing
 
+The datapacks are built using Nix. You must have Nix installed if you want to
+build locally. If you've never used it before, it's really not as scary as it
+sounds - just [install Nix](https://install.determinate.systems/), and run
+`nix build` to build all the datapacks, or to build an individual datapack, run
+`nix build .#<name>` where `<name>` is something like `afk` or
+`pause-day-cycle`. However, if you're on Windows, to use Nix you'll have to use
+WSL, which can be a bit of a pain for doing stuff on your local Windows file
+system too - I don't really have a good solution for you, but this project does
+use GitHub Actions to build the project in CI and publishes an artifact from
+that.
+
 I value composability over functionality, preferring to have less built in to
 datapacks and allowing you to build the features you need on top of it. Each
 piece of functionality can be small and performant, and they can be combined
 together to create something more complicated without sacrificing on
 maintainability or performance.
 
-I typically only work on what I feel motivated to work on, because this isn't my
-job. I just do it for fun and to make my own life easier. But if there's a
-feature that you want added, either create an issue for it and I'll take a look
-or just contribute it and we'll get it merged and released!
-
-If you're on an operating system where bash is available, the build script is
-executable as `./build.sh`. All the required development tools are included in
-the Nix flake via `nix develop` (but if you're not using Nix, make sure you have
-`jq` and `zip` available). Data files are formatted with Prettier.
+I only work on what I feel motivated to work on, because this isn't my job. I
+just do it for fun and to make my own life easier. But if there's a feature that
+you want added, you're welcome to create an issue for it and I'll take a look,
+I'll build it if I think it's worth the time. Or you can contribute it yourself,
+and we'll get it merged and released!
