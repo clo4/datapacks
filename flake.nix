@@ -39,7 +39,7 @@
 
               installPhase = ''
                 mkdir -p $out/datapacks
-                mv datapack.zip $out/datapacks/$pname+$version+mc$minMinecraftVersion-$maxMinecraftVersion.zip
+                mv datapack.zip $out/datapacks/$pname+v$version+mc$minMinecraftVersion-$maxMinecraftVersion.zip
               '';
             });
 
