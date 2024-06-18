@@ -21,7 +21,7 @@
           pkgs.stdenvNoCC.mkDerivation (args
             // {
               version = args.version;
-              nativeBuildInputs = [pkgs.zip];
+              nativeBuildInputs = [pkgs.zip pkgs.unzip];
 
               buildPhase = ''
                 runHook preBuild
@@ -33,8 +33,17 @@
                 runHook postBuild
               '';
 
+              doCheck = true;
               checkPhase = ''
-                test -f datapack.zip
+                set -eo pipefail
+
+                # The file should exist and be a valid zip file
+                zip -T datapack.zip
+
+                # As for the contents, the only thing that really matters is that there's
+                # a pack.mcmeta. If I've fucked up and it's invalid, that's on me.
+                unzip datapack.zip -d test-output
+                test -f test-output/pack.mcmeta
               '';
 
               installPhase = ''
