@@ -1,13 +1,11 @@
-{buildDataPack}:
-buildDataPack {
-  pname = "afk-sleep";
+{mkDataPack}:
+mkDataPack {
+  name = "afk-sleep";
   version = "1.2.1";
-  minMinecraftVersion = "1.18.x";
-  maxMinecraftVersion = "1.21.0";
 
   src = ./.;
 
-  preBuild = ''
+  prepare = ''
     shopt -s nullglob globstar
     pushd data
     for dir in **/function **/advancement; do
@@ -15,12 +13,8 @@ buildDataPack {
     done
     popd
     patch -p0 -f -i clumsy_no_macro_compat.patch
+    touch **
   '';
 
-  zip = [
-    "LICENSE"
-    "pack.png"
-    "pack.mcmeta"
-    "data"
-  ];
+  include = ["LICENSE"];
 }

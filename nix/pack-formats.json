@@ -1,0 +1,356 @@
+{
+  "4": {
+    "releases": {
+      "max": "1.14.4",
+      "min": "1.13"
+    },
+    "versions": {
+      "max": "19w46b",
+      "min": "17w48a"
+    }
+  },
+  "5": {
+    "releases": {
+      "max": "1.16.1",
+      "min": "1.15"
+    },
+    "versions": {
+      "max": "1.16.2-pre3",
+      "min": "1.15-pre1"
+    }
+  },
+  "6": {
+    "releases": {
+      "max": "1.16.5",
+      "min": "1.16.2"
+    },
+    "versions": {
+      "max": "20w45a",
+      "min": "1.16.2-rc1"
+    }
+  },
+  "7": {
+    "releases": {
+      "max": "1.17.1",
+      "min": "1.17"
+    },
+    "versions": {
+      "max": "1.17.1",
+      "min": "20w46a"
+    }
+  },
+  "8": {
+    "releases": {
+      "max": "1.18.1",
+      "min": "1.18"
+    },
+    "versions": {
+      "max": "22w07a",
+      "min": "21w37a"
+    }
+  },
+  "9": {
+    "releases": {
+      "max": "1.18.2",
+      "min": "1.18.2"
+    },
+    "versions": {
+      "max": "1.18.2",
+      "min": "1.18.2-pre1"
+    }
+  },
+  "10": {
+    "releases": {
+      "max": "1.19.3",
+      "min": "1.19"
+    },
+    "versions": {
+      "max": "1.19.3",
+      "min": "22w11a"
+    }
+  },
+  "11": {
+    "releases": null,
+    "versions": {
+      "max": "23w05a",
+      "min": "23w03a"
+    }
+  },
+  "12": {
+    "releases": {
+      "max": "1.19.4",
+      "min": "1.19.4"
+    },
+    "versions": {
+      "max": "1.19.4",
+      "min": "23w06a"
+    }
+  },
+  "13": {
+    "releases": null,
+    "versions": {
+      "max": "23w14a",
+      "min": "23w12a"
+    }
+  },
+  "14": {
+    "releases": null,
+    "versions": {
+      "max": "23w17a",
+      "min": "23w16a"
+    }
+  },
+  "15": {
+    "releases": {
+      "max": "1.20.1",
+      "min": "1.20"
+    },
+    "versions": {
+      "max": "1.20.1",
+      "min": "23w18a"
+    }
+  },
+  "16": {
+    "releases": null,
+    "versions": {
+      "max": "23w31a",
+      "min": "23w31a"
+    }
+  },
+  "17": {
+    "releases": null,
+    "versions": {
+      "max": "23w35a",
+      "min": "23w32a"
+    }
+  },
+  "18": {
+    "releases": {
+      "max": "1.20.2",
+      "min": "1.20.2"
+    },
+    "versions": {
+      "max": "1.20.2",
+      "min": "1.20.2-pre1"
+    }
+  },
+  "19": {
+    "releases": null,
+    "versions": {
+      "max": "23w40a",
+      "min": "23w40a"
+    }
+  },
+  "20": {
+    "releases": null,
+    "versions": {
+      "max": "23w41a",
+      "min": "23w41a"
+    }
+  },
+  "21": {
+    "releases": null,
+    "versions": {
+      "max": "23w42a",
+      "min": "23w42a"
+    }
+  },
+  "22": {
+    "releases": null,
+    "versions": {
+      "max": "23w43b",
+      "min": "23w43a"
+    }
+  },
+  "23": {
+    "releases": null,
+    "versions": {
+      "max": "23w44a",
+      "min": "23w44a"
+    }
+  },
+  "24": {
+    "releases": null,
+    "versions": {
+      "max": "23w45a",
+      "min": "23w45a"
+    }
+  },
+  "25": {
+    "releases": null,
+    "versions": {
+      "max": "23w46a",
+      "min": "23w46a"
+    }
+  },
+  "26": {
+    "releases": {
+      "max": "1.20.4",
+      "min": "1.20.3"
+    },
+    "versions": {
+      "max": "1.20.4",
+      "min": "1.20.3-pre1"
+    }
+  },
+  "27": {
+    "releases": null,
+    "versions": {
+      "max": "23w51b",
+      "min": "23w51a"
+    }
+  },
+  "28": {
+    "releases": null,
+    "versions": {
+      "max": "24w03b",
+      "min": "24w03a"
+    }
+  },
+  "29": {
+    "releases": null,
+    "versions": {
+      "max": "24w04a",
+      "min": "24w04a"
+    }
+  },
+  "30": {
+    "releases": null,
+    "versions": {
+      "max": "24w05b",
+      "min": "24w05a"
+    }
+  },
+  "31": {
+    "releases": null,
+    "versions": {
+      "max": "24w06a",
+      "min": "24w06a"
+    }
+  },
+  "32": {
+    "releases": null,
+    "versions": {
+      "max": "24w07a",
+      "min": "24w07a"
+    }
+  },
+  "33": {
+    "releases": null,
+    "versions": {
+      "max": "24w09a",
+      "min": "24w09a"
+    }
+  },
+  "34": {
+    "releases": null,
+    "versions": {
+      "max": "24w10a",
+      "min": "24w10a"
+    }
+  },
+  "35": {
+    "releases": null,
+    "versions": {
+      "max": "24w11a",
+      "min": "24w11a"
+    }
+  },
+  "36": {
+    "releases": null,
+    "versions": {
+      "max": "24w12a",
+      "min": "24w12a"
+    }
+  },
+  "37": {
+    "releases": null,
+    "versions": {
+      "max": "24w13a",
+      "min": "24w13a"
+    }
+  },
+  "38": {
+    "releases": null,
+    "versions": {
+      "max": "24w14a",
+      "min": "24w14a"
+    }
+  },
+  "39": {
+    "releases": null,
+    "versions": {
+      "max": "1.20.5-pre1",
+      "min": "1.20.5-pre1"
+    }
+  },
+  "40": {
+    "releases": null,
+    "versions": {
+      "max": "1.20.5-pre2",
+      "min": "1.20.5-pre2"
+    }
+  },
+  "41": {
+    "releases": {
+      "max": "1.20.6",
+      "min": "1.20.5"
+    },
+    "versions": {
+      "max": "1.20.6",
+      "min": "1.20.5-pre3"
+    }
+  },
+  "42": {
+    "releases": null,
+    "versions": {
+      "max": "24w18a",
+      "min": "24w18a"
+    }
+  },
+  "43": {
+    "releases": null,
+    "versions": {
+      "max": "24w19b",
+      "min": "24w19a"
+    }
+  },
+  "44": {
+    "releases": null,
+    "versions": {
+      "max": "24w20a",
+      "min": "24w20a"
+    }
+  },
+  "45": {
+    "releases": null,
+    "versions": {
+      "max": "24w21b",
+      "min": "24w21a"
+    }
+  },
+  "46": {
+    "releases": null,
+    "versions": {
+      "max": "1.21-pre1",
+      "min": "1.21-pre1"
+    }
+  },
+  "47": {
+    "releases": null,
+    "versions": {
+      "max": "1.21-pre2",
+      "min": "1.21-pre2"
+    }
+  },
+  "48": {
+    "releases": {
+      "max": "1.21",
+      "min": "1.21"
+    },
+    "versions": {
+      "max": "1.21",
+      "min": "1.21-pre3"
+    }
+  }
+}
