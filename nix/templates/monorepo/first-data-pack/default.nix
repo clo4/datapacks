@@ -1,5 +1,5 @@
-{mkDataPack}:
-mkDataPack {
+{buildDataPack}:
+buildDataPack {
   name = "first-data-pack";
   version = "0.1.0";
   src = ./.;

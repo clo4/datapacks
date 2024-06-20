@@ -11,7 +11,7 @@
   }:
     {
       overlays.default = final: prev: {
-        inherit (final.callPackage (import ./nix/builder.nix) {}) mkDataPack;
+        inherit (final.callPackage (import ./nix/builder.nix) {}) buildDataPack;
       };
       templates = {
         default = {

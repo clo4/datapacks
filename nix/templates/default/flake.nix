@@ -28,7 +28,7 @@
         #
         # 📍 Create the data pack package
         #
-        my-data-pack = pkgs.mkDataPack {
+        my-data-pack = pkgs.buildDataPack {
           name = "my-data-pack";
           version = "1.0.0";
           src = ./.;

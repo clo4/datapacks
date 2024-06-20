@@ -1,5 +1,5 @@
-{mkDataPack}:
-mkDataPack {
+{buildDataPack}:
+buildDataPack {
   name = "afk-sleep";
   version = "1.2.1";
 

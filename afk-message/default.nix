@@ -1,5 +1,5 @@
-{mkDataPack}:
-mkDataPack {
+{buildDataPack}:
+buildDataPack {
   name = "afk-message";
   version = "1.0.1";
 

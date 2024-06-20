@@ -3,7 +3,7 @@
   zip,
   unzip,
 }: {
-  mkDataPack = {
+  buildDataPack = {
     #
     # name:
     #   The name of the data pack.

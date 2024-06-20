@@ -38,9 +38,9 @@ to change it over time.
       pkgs = nixpkgs.legacyPackages.${system}.extend datapacks.overlays.default;
     in {
       #
-      # 📍 3. Use the `mkDataPack` function to define the data pack
+      # 📍 3. Use the `buildDataPack` function to define the data pack
       #
-      packages.my-data-pack = pkgs.mkDataPack {
+      packages.my-data-pack = pkgs.buildDataPack {
         name = "my-data-pack";
         version = "0.1";
 

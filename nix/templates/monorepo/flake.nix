@@ -27,7 +27,7 @@
       packages = rec {
         #
         # 📍 Create the data pack packages
-        #    With the overlay applied, both have access to mkDataPack
+        #    With the overlay applied, both have access to buildDataPack
         #
         first-data-pack = pkgs.callPackage ./first-data-pack {};
         second-data-pack = pkgs.callPackage ./second-data-pack {};
