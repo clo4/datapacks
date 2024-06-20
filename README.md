@@ -17,6 +17,7 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [AFK Sleep](#afk-sleep)
     - [AFK Message](#afk-message)
     - [AFK Dim Names](#afk-dim-names)
+  - [Nix Build System](#nix-build-system)
   - [Contributing](#contributing)
 
 ## Datapacks
@@ -113,6 +114,26 @@ becomes AFK or returns to the game.
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
 
+## Nix Build System
+
+The build system is a reusable component built with Nix. You can use this
+repository as an input to your own if you would like to use the same logic to
+build. It would be relatively easy to extend to build a project using the Beet
+toolchain, too.
+
+Run this command to generate a flake with a single data pack in the repository
+root.
+
+```bash
+nix flake init -t github:clo4/datapacks
+```
+
+Run this command to generate a flake with multiple data packs in subdirectories.
+
+```bash
+nix flake init -t github:clo4/datapacks#monorepo
+```
+
 ## Contributing
 
 The datapacks are built using Nix. You must have Nix installed if you want to
@@ -125,6 +146,8 @@ WSL, which can be a bit of a pain for doing stuff on your local Windows file
 system too - I don't really have a good solution for you, but this project does
 use GitHub Actions to build the project in CI and publishes an artifact from
 that.
+
+### Philosophy
 
 I value composability over functionality, preferring to have less built in to
 datapacks and allowing you to build the features you need on top of it. Each

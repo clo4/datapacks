@@ -7,10 +7,11 @@ decision that always works out and never introduces more headaches.
 Anyway, I ended up with a build system based on Nix. Here's a quick example for
 a datapack if you want to use it too:
 
-Create a `flake.nix` and add an input with this repository. You'll use the
-overlay. It's a nix flake, so there's a little bit of boilerplate before you can jump in,
-but once you have the structure set up it's so easy to start hacking on your datapack with
-a reliable build system that also gives you the flexibility to change it over time.
+Create a `flake.nix` and add an input for this repository. You'll use the
+overlay. It's a nix flake, so there's a little bit of boilerplate before you can
+jump in, but once you have the structure set up it's so easy to start hacking on
+your datapack with a reliable build system that also gives you the flexibility
+to change it over time.
 
 ```nix
 {
@@ -46,7 +47,7 @@ a reliable build system that also gives you the flexibility to change it over ti
         src = ./.;
 
         # 📍 4. OPTIONAL: Prepare the directory for zipping
-        prepare = ''
+        preprocess = ''
           shopt -s nullglob globstar
           for dir in **/function; do
             cp -R $dir ''${dir}s
@@ -62,15 +63,25 @@ a reliable build system that also gives you the flexibility to change it over ti
 
 You can use this same structure to define multiple output packages.
 
-Unlike `stdenv.mkDerivation`, I'm actually documenting the arguments this takes ;)
+Unlike `stdenv.mkDerivation`, I'm actually documenting the arguments this takes
+;)
 
 - `name` is a **string** which is the name of the data pack
 - `version` is a **string**, the version of the data pack
-- `src` is a **path** to a directory containing the `pack.mcmeta` - this is the source that will be built.
-- `include` is an **optional list of strings** which is the additional files that will be included. By default, 
-- `prepare` is an **optional string**, a Bash script that will execute before the contents are zipped.
-- `packNameFormat` is a **function** that generates the name of the output zip file. It takes an attrset with the following properties, and returns a string:
+- `src` is a **path** to a directory containing the `pack.mcmeta` - this is the
+  source that will be built.
+- `include` is an **optional list of strings** which is the additional files
+  that will be included. By default,
+- `preprocess` is an **optional string**, a Bash script that will execute before
+  the contents are zipped.
+- `packNameFormat` is a **function** that generates the name of the output zip
+  file. It takes an attrset with the following properties, and returns a string:
   - `name` - the name of the data pack
   - `version` - the version of the data pack
-  - `minGameVersion` - the minimum Minecraft version that the data pack supports (inferred from `pack.mcmeta`)
-  - `maxGameVersion` - the maximum Minecraft version that the data pack supports (inferred from `pack.mcmeta`)
+  - `minGameVersion` - the minimum Minecraft version that the data pack supports
+    (inferred from `pack.mcmeta`)
+  - `maxGameVersion` - the maximum Minecraft version that the data pack supports
+    (inferred from `pack.mcmeta`)
+
+You can still use any of the other attributes that `stdenv.mkDerivation` uses,
+although this is all that is necessary to use to build a data pack.

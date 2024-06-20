@@ -4,12 +4,40 @@
   unzip,
 }: {
   mkDataPack = {
+    #
+    # name:
+    #   The name of the data pack.
+    #
     name,
+    #
+    # version:
+    #   The version of the data pack.
+    #
     version,
+    #
+    # src:
+    #   The source files that will be used to build.
+    #
     src,
+    #
+    # packNameFormat:
+    #   An optional function used for generating the data pack zip file name.
+    #
     packNameFormat ? null,
+    #
+    # include:
+    #   An optional list of file names to be included in the output zip.
+    #
     include ? [],
+    #
+    # preprocess:
+    #   Optional Bash script to be executed before zipping the files.
+    #
     preprocess ? "",
+    #
+    # nativeBuildInputs:
+    #   Additonal dependencies that are required in order to build or preprocess.
+    #
     nativeBuildInputs ? [],
   } @ attrs: let
     # packFormats is an attrset of stringified pack formats to a { min, max } set.

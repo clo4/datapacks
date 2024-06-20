@@ -13,6 +13,16 @@
       overlays.default = final: prev: {
         inherit (final.callPackage (import ./nix/builder.nix) {}) mkDataPack;
       };
+      templates = {
+        default = {
+          description = "Single data pack in the root of the repository";
+          path = ./nix/templates/default;
+        };
+        monorepo = {
+          description = "Multiple data packs in subdirectories";
+          path = ./nix/templates/monorepo;
+        };
+      };
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
