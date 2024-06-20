@@ -5,89 +5,61 @@
   };
 
   outputs = inputs @ {
+    self,
     nixpkgs,
     flake-utils,
-    ...
   }:
-    flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
+    {
+      overlays.default = final: prev: {
+        inherit (final.callPackage (import ./nix/builder.nix) {}) buildDataPack;
+      };
+      templates = {
+        default = {
+          description = "Single data pack in the root of the repository";
+          path = ./nix/templates/default;
+        };
+        monorepo = {
+          description = "Multiple data packs in subdirectories";
+          path = ./nix/templates/monorepo;
+        };
+      };
+    }
+    // (flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
     in {
       formatter = pkgs.alejandra;
 
       packages = let
-        callDataPack = path: args: pkgs.callPackage path ({inherit buildDataPack;} // args);
-
-        buildDataPack = args:
-          pkgs.stdenvNoCC.mkDerivation (args
-            // {
-              version = args.version;
-              nativeBuildInputs = [pkgs.zip pkgs.unzip];
-
-              buildPhase = ''
-                runHook preBuild
-                # I don't love this but for most people I think they might assume
-                # something is weird or wrong if the modification time for all the files
-                # in the zip is 1970. This is for Minecraft players, not Nix developers
-                touch **
-                zip -r datapack.zip $zip
-                runHook postBuild
-              '';
-
-              doCheck = true;
-              checkPhase = ''
-                set -eo pipefail
-
-                # The file should exist and be a valid zip file
-                zip -T datapack.zip
-
-                # As for the contents, the only thing that really matters is that there's
-                # a pack.mcmeta. If I've fucked up and it's invalid, that's on me.
-                unzip datapack.zip -d test-output
-                test -f test-output/pack.mcmeta
-              '';
-
-              installPhase = ''
-                mkdir -p $out/datapacks
-                mv datapack.zip $out/datapacks/$pname+v$version+mc$minMinecraftVersion-$maxMinecraftVersion.zip
-              '';
-            });
-
         # Based on the definition of symlinkJoin but specific to merging datapacks.
         # This makes releasing and testing a bit simpler
-        joinDataPacks = args_ @ {
-          name,
-          packages,
-          ...
-        }: let
-          args = removeAttrs args_ ["name"] // {passAsFile = ["packages"];};
-        in
-          pkgs.runCommand name args ''
-            mkdir -p $out/datapacks
+        joinDataPacks = name: packages:
+          pkgs.runCommand name {
+            inherit packages;
+            passAsFile = ["packages"];
+          } ''
+            mkdir -p $out/datapacks $out/source
             for path in $(cat $packagesPath); do
               cp $path/datapacks/* $out/datapacks
+              cp -R $path/source/* $out/source
             done
           '';
       in rec {
-        afk = callDataPack ./afk {};
-        afk-sleep = callDataPack ./afk-sleep {};
-        afk-message = callDataPack ./afk-message {};
-        afk-dim-names = callDataPack ./afk-dim-names {};
-        pause-day-cycle = callDataPack ./pause-day-cycle {};
-        chickenfix = callDataPack ./chickenfix {};
+        afk = pkgs.callPackage ./afk {};
+        afk-sleep = pkgs.callPackage ./afk-sleep {};
+        afk-message = pkgs.callPackage ./afk-message {};
+        afk-dim-names = pkgs.callPackage ./afk-dim-names {};
+        pause-day-cycle = pkgs.callPackage ./pause-day-cycle {};
+        chickenfix = pkgs.callPackage ./chickenfix {};
 
-        # Check if this is right
         default = all;
-        all = joinDataPacks {
-          name = "clo4-datapacks";
-          packages = [
-            afk
-            afk-sleep
-            afk-message
-            afk-dim-names
-            pause-day-cycle
-            chickenfix
-          ];
-        };
+        all = joinDataPacks "clo4-datapacks" [
+          afk
+          afk-sleep
+          afk-message
+          afk-dim-names
+          pause-day-cycle
+          chickenfix
+        ];
       };
-    });
+    }));
 }
