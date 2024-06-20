@@ -37,9 +37,10 @@
             inherit packages;
             passAsFile = ["packages"];
           } ''
-            mkdir -p $out/datapacks
+            mkdir -p $out/datapacks $out/source
             for path in $(cat $packagesPath); do
               cp $path/datapacks/* $out/datapacks
+              cp -R $path/source/* $out/source
             done
           '';
       in rec {

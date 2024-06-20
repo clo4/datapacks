@@ -40,14 +40,18 @@
     #
     nativeBuildInputs ? [],
   } @ attrs: let
-    # packFormats is an attrset of stringified pack formats to a { min, max } set.
-    # min/max attrs will be the full release if it exists, or the
+    # packFormats is an attrset in the form of { "<pack format>" = { min = <string>; max = <string>; }; }
+    # min/max attrs will be the full release if it exists, or a
     # snapshot / prerelease / release candidate if not.
     packFormats =
       builtins.mapAttrs (format: {
         releases,
         versions,
       }: {
+        # `versions` is guaranteed to have a min and max as a pack format *must*
+        # have been introduced in at least one version but may not have been included
+        # in a stable release.
+        # `releases` will always be preferred (if available) for readability.
         min = releases.min or versions.min;
         max = releases.max or versions.max;
       })
@@ -96,7 +100,7 @@
             if minGameVersion == maxGameVersion
             then "${minGameVersion}"
             else "${minGameVersion}-${maxGameVersionWithZero}";
-        in "${name}+v${version}+mc${gameVersionRange}.zip";
+        in "${name}+v${version}+mc${gameVersionRange}";
   in
     stdenvNoCC.mkDerivation ((builtins.removeAttrs attrs ["name"])
       // {
@@ -148,6 +152,7 @@
             runHook preCheck
 
             zip -T datapack.zip
+            # Should this also check if there's a valid pack.mcmeta file?
 
             runHook postCheck
           '';
@@ -157,17 +162,44 @@
           or (let
             minGameVersion = getGameVersion "min";
             maxGameVersion = getGameVersion "max";
-            zipName = nameFormat {inherit name version minGameVersion maxGameVersion;};
+            outputName = nameFormat {inherit name version minGameVersion maxGameVersion;};
           in ''
             runHook preInstall
 
             # using `datapacks` for zips, `dist` for unzipped sources
-            mkdir -p $out/datapacks $out/dist
+            mkdir -p $out/datapacks $out/source/${outputName}
 
-            mv datapack.zip $out/datapacks/${zipName}
-            mv $zipFiles $out/dist
+            mv datapack.zip $out/datapacks/${outputName}.zip
+            mv $zipFiles $out/source/${outputName}
 
             runHook postInstall
           '');
+
+        # This phase is unnecessary because there is no executable binary
+        # being produced, only a static asset.
+        fixupPhase =
+          attrs.fixupPhase
+          or ''
+            runHook preFixup
+            runHook postFixup
+          '';
+
+        # This phase is unnecessary because the source is produced as part
+        # of the normal build phase.
+        distPhase =
+          attrs.distPhase
+          or ''
+            runHook preDist
+            runHook postDist
+          '';
+
+        # This phase is unnecessary because once the data pack has been moved
+        # to the `datapacks` folder there is nothing left to check.
+        installCheckPhase =
+          attrs.installCheckPhase
+          or ''
+            runHook preInstallCheck
+            runHook postInstallCheck
+          '';
       });
 }
