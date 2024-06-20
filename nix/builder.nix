@@ -88,7 +88,7 @@
           maxGameVersion,
         }: let
           maxGameVersionWithZero =
-            if ! builtins.isNull (builtins.match "^[[:digit:]]\\.[[:digit:]][[:digit:]]?$" maxGameVersion)
+            if ! builtins.isNull (builtins.match "[[:digit:]]\\.[[:digit:]][[:digit:]]?" maxGameVersion)
             then "${maxGameVersion}.0"
             else maxGameVersion;
 
