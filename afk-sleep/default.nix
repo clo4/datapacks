@@ -5,7 +5,7 @@ mkDataPack {
 
   src = ./.;
 
-  prepare = ''
+  preprocess = ''
     shopt -s nullglob globstar
     pushd data
     for dir in **/function **/advancement; do
