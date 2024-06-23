@@ -3,12 +3,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    #
-    # 📍 Add this repo as an input
-    #
+    # This is used so your pack formats can be updated independently
+    # of the upstream builder. Update with the following command:
+    #   $ nix flake lock --update-input mcmeta-summary
+    mcmeta-summary = {
+      url = "github:misode/mcmeta/summary";
+      flake = false;
+    };
+
     datapacks = {
       url = "github:clo4/datapacks";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.mcmeta-summary.follows = "mcmeta-summary";
     };
   };
 
@@ -19,22 +25,12 @@
     ...
   }:
     flake-utils.lib.eachDefaultSystem (system: let
-      #
-      # 📍 Extend nixpkgs with the overlay
-      #
       pkgs = nixpkgs.legacyPackages.${system}.extend datapacks.overlays.default;
     in {
       packages = rec {
-        #
-        # 📍 Create the data pack packages
-        #    With the overlay applied, both have access to buildDataPack
-        #
         first-data-pack = pkgs.callPackage ./first-data-pack {};
         second-data-pack = pkgs.callPackage ./second-data-pack {};
 
-        #
-        # 📍 Create a package that builds them all
-        #
         all = pkgs.symlinkJoin {
           name = "all-data-packs";
           paths = [first-data-pack second-data-pack];

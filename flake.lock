@@ -18,6 +18,23 @@
         "type": "github"
       }
     },
+    "mcmeta-summary": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718267043,
+        "narHash": "sha256-rKDx5oYPBwRdMlS8vcyRsOIQk96DQCttzdguPdZ6yiY=",
+        "owner": "misode",
+        "repo": "mcmeta",
+        "rev": "8e6b073d4bcd449476957bf462c3b01d62f69486",
+        "type": "github"
+      },
+      "original": {
+        "owner": "misode",
+        "ref": "summary",
+        "repo": "mcmeta",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1708475490,
@@ -37,6 +54,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "mcmeta-summary": "mcmeta-summary",
         "nixpkgs": "nixpkgs"
       }
     },

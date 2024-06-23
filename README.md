@@ -55,7 +55,7 @@ they grow up in a cramped, inhumane chicken farm.
 
 It works by teleporting chickens to the center of the block they're in, on the
 tick where they grow into an adult. This prevents them from being shoved into a
-wall and suffocating. This is only done if the chicken is withing five blocks of
+wall and suffocating. This is only done if the chicken is within five blocks of
 any entity named exactly `chickenfix`, to prevent normal (humane) chicken farms
 from being broken by the same logic that fixes the inhumane ones.
 
@@ -132,6 +132,13 @@ Run this command to generate a flake with multiple data packs in subdirectories.
 
 ```bash
 nix flake init -t github:clo4/datapacks#monorepo
+```
+
+If you're running into issues with the pack formats causing your build to fail,
+make sure you have the latest pack formats:
+
+```bash
+nix flake lock --update-input mcmeta-summary
 ```
 
 ## Contributing

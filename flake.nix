@@ -2,16 +2,25 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    mcmeta-summary = {
+      url = "github:misode/mcmeta/summary";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     flake-utils,
+    mcmeta-summary,
   }:
     {
-      overlays.default = final: prev: {
-        inherit (final.callPackage (import ./nix/builder.nix) {}) buildDataPack;
+      overlays.default = final: prev: let
+        builder = final.callPackage (import ./nix/builder.nix) {
+          minecraftVersionsSummary = builtins.fromJSON (builtins.readFile "${mcmeta-summary}/versions/data.json");
+        };
+      in {
+        inherit (builder) buildDataPack;
       };
       templates = {
         default = {

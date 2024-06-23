@@ -2,7 +2,9 @@
   stdenvNoCC,
   zip,
   unzip,
-}: {
+  minecraftVersionsSummary,
+  lib,
+}: rec {
   buildDataPack = {
     #
     # name:
@@ -36,71 +38,84 @@
     preprocess ? "",
     #
     # nativeBuildInputs:
-    #   Additonal dependencies that are required in order to build or preprocess.
+    #   Additional dependencies that are required in order to build or preprocess.
     #
     nativeBuildInputs ? [],
   } @ attrs: let
-    # packFormats is an attrset in the form of { "<pack format>" = { min = <string>; max = <string>; }; }
-    # min/max attrs will be the full release if it exists, or a
-    # snapshot / prerelease / release candidate if not.
-    packFormats =
-      builtins.mapAttrs (format: {
-        releases,
-        versions,
-      }: {
-        # `versions` is guaranteed to have a min and max as a pack format *must*
-        # have been introduced in at least one version but may not have been included
-        # in a stable release.
-        # `releases` will always be preferred (if available) for readability.
-        min = releases.min or versions.min;
-        max = releases.max or versions.max;
-      })
-      (builtins.fromJSON (builtins.readFile ./pack-formats.json));
+    # List of versions, grouped by pack format, sorted by release date (newest first)
+    packFormats = let
+      groupedPackFormats =
+        builtins.groupBy
+        ({data_pack_version, ...}: builtins.toString data_pack_version)
+        minecraftVersionsSummary;
+    in
+      builtins.mapAttrs
+      (_format: versions: builtins.sort (a: b: a.data_version > b.data_version) versions)
+      groupedPackFormats;
 
     packMeta = builtins.fromJSON (builtins.readFile "${src}/pack.mcmeta");
 
-    getPackFormat = minOrMax: let
-      supportedFormatIndex =
-        if minOrMax == "min"
-        then 0
-        else 1;
-      supportedFormatAttr =
-        if minOrMax == "min"
-        then "min_inclusive"
-        else "max_inclusive";
-    in
+    packFormat =
       if packMeta.pack ? supported_formats
       then
         if builtins.isList packMeta.pack.supported_formats
-        then builtins.elemAt packMeta.pack.supported_formats supportedFormatIndex
-        else packMeta.pack.supported_formats.${supportedFormatAttr}
-      else packMeta.pack.pack_format;
+        then {
+          min = builtins.elemAt packMeta.pack.supported_formats 0;
+          max = builtins.elemAt packMeta.pack.supported_formats 1;
+        }
+        else {
+          min = packMeta.pack.supported_formats.min_inclusive;
+          max = packMeta.pack.supported_formats.max_inclusive;
+        }
+      else {
+        min = packMeta.pack.pack_format;
+        max = packMeta.pack.pack_format;
+      };
 
-    getGameVersion = minOrMax: let
-      packFormat = getPackFormat minOrMax;
+    # `selector` takes two arguments, the releases and versions lists.
+    # `format` is a valid Minecraft data pack format. The versions will have this pack format format.
+    selectFormatVersion = selector: format: let
+      packFormatStr = builtins.toString format;
+      versions = packFormats.${packFormatStr};
+      releases = builtins.filter (version: version.type == "release") versions;
     in
-      packFormats."${builtins.toString packFormat}".${minOrMax};
+      selector releases versions;
 
-    nameFormat =
-      if ! builtins.isNull packNameFormat
-      then packNameFormat
-      else
-        {
-          name,
-          version,
-          minGameVersion,
-          maxGameVersion,
-        }: let
-          maxGameVersionWithZero =
-            if ! builtins.isNull (builtins.match "[[:digit:]]\\.[[:digit:]][[:digit:]]?" maxGameVersion)
-            then "${maxGameVersion}.0"
-            else maxGameVersion;
+    # The releases list may not have any elements, but the versions list is
+    # guaranteed to. Taking the first of the list means you'll always get either
+    # the first release version or the first snapshot with that format.
+    maxGameVersion =
+      (selectFormatVersion
+        (releases: versions: builtins.head (releases ++ versions))
+        packFormat.max)
+      .id;
 
-          gameVersionRange =
-            if minGameVersion == maxGameVersion
-            then "${minGameVersion}"
-            else "${minGameVersion}-${maxGameVersionWithZero}";
-        in "${name}+v${version}+mc${gameVersionRange}";
+    # The same is true of the min version but in reverse. You have to append instead
+    # of prepending, and have to take the last item.
+    minGameVersion =
+      (selectFormatVersion
+        (releases: versions: lib.last (versions ++ releases))
+        packFormat.min)
+      .id;
+
+    defaultNameFormat = {
+      name,
+      version,
+      minGameVersion,
+      maxGameVersion,
+    }: let
+      # The .0 implies that we're not talking about the whole version range,
+      # eg. 1.21 vs 1.21.0
+      maxGameVersionWithZero =
+        if ! builtins.isNull (builtins.match "[[:digit:]]\\.[[:digit:]][[:digit:]]?" maxGameVersion)
+        then "${maxGameVersion}.0"
+        else maxGameVersion;
+
+      gameVersionRange =
+        if minGameVersion == maxGameVersion
+        then "${maxGameVersionWithZero}"
+        else "${minGameVersion}-${maxGameVersionWithZero}";
+    in "${name}+v${version}+mc${gameVersionRange}";
   in
     stdenvNoCC.mkDerivation ((builtins.removeAttrs attrs ["name"])
       // {
@@ -137,7 +152,7 @@
             runHook preBuild
 
             # This is fine to execute if pack.png doesn't exist because for some reason
-            # the default behaviour of `zip` is to just ignore filees that don't exist.
+            # the default behaviour of `zip` is to just ignore files that don't exist.
             # Because there's no reason that would ever be a mistake, right?
             # Anyway, works for us, not complaining.
             zip -r datapack.zip $zipFiles
@@ -160,9 +175,11 @@
         installPhase =
           attrs.installPhase
           or (let
-            minGameVersion = getGameVersion "min";
-            maxGameVersion = getGameVersion "max";
-            outputName = nameFormat {inherit name version minGameVersion maxGameVersion;};
+            formatName =
+              if ! builtins.isNull packNameFormat
+              then packNameFormat
+              else defaultNameFormat;
+            outputName = formatName {inherit name version minGameVersion maxGameVersion;};
           in ''
             runHook preInstall
 

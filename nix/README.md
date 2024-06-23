@@ -19,34 +19,32 @@ to change it over time.
     nixpkgs.url = "github:nixos/nixpkgs/unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
-    #
-    # 📍 1. Add this repository as an input
-    #
+    # This is used so your pack formats can be updated independently
+    # of the upstream builder. Update with the following command:
+    #   $ nix flake lock --update-input mcmeta-summary
+    mcmeta-summary = {
+      url = "github:misode/mcmeta/summary";
+      flake = false;
+    };
+
     datapacks = {
       url = "github:clo4/datapacks";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+      inputs.mcmeta-summary.follows = "mcmeta-summary";
     };
   };
 
   outputs = { self, nixpkgs, flake-utils, datapacks }:
     flake-utils.lib.eachDefaultSystem (system:
     let
-      #
-      # 📍 2. Extend nixpkgs with its overlay
-      #
       pkgs = nixpkgs.legacyPackages.${system}.extend datapacks.overlays.default;
     in {
-      #
-      # 📍 3. Use the `buildDataPack` function to define the data pack
-      #
       packages.my-data-pack = pkgs.buildDataPack {
         name = "my-data-pack";
         version = "0.1";
 
         src = ./.;
 
-        # 📍 4. OPTIONAL: Prepare the directory for zipping
         preprocess = ''
           shopt -s nullglob globstar
           for dir in **/function; do
@@ -54,7 +52,6 @@ to change it over time.
           done
         '';
 
-        # 📍 5. OPTIONAL: Add some other files to the zip
         include = ["LICENSE"];
       };
     });
