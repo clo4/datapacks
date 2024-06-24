@@ -34,25 +34,31 @@ to change it over time.
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, datapacks }:
-    flake-utils.lib.eachDefaultSystem (system:
-    let
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    datapacks,
+    ...
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend datapacks.overlays.default;
     in {
-      packages.my-data-pack = pkgs.buildDataPack {
-        name = "my-data-pack";
-        version = "0.1";
+      packages = rec {
+        my-data-pack = pkgs.buildDataPack {
+          name = "my-data-pack";
+          version = "1.0.0";
+          src = ./.;
 
-        src = ./.;
+          # Remove this if you don't need any custom build steps.
+          preprocess = ''
+            echo "Some very complicated build step"
+          '';
 
-        preprocess = ''
-          shopt -s nullglob globstar
-          for dir in **/function; do
-            cp -R $dir ''${dir}s
-          done
-        '';
+          # Remove this if you don't need to include any more files.
+          include = ["LICENSE"];
+        };
 
-        include = ["LICENSE"];
+        default = my-data-pack;
       };
     });
 }
