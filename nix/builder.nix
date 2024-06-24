@@ -4,7 +4,22 @@
   unzip,
   minecraftVersionsSummary,
   lib,
+  runCommand,
 }: rec {
+  # Based on the definition of symlinkJoin but specific to merging datapacks.
+  # This makes releasing and testing a bit simpler
+  joinDataPacks = name: packages:
+    runCommand name {
+      inherit packages;
+      passAsFile = ["packages"];
+    } ''
+      mkdir -p $out/datapacks $out/source
+      for path in $(cat $packagesPath); do
+        cp $path/datapacks/* $out/datapacks
+        cp -R $path/source/* $out/source
+      done
+    '';
+
   buildDataPack = {
     #
     # name:

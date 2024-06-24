@@ -20,7 +20,7 @@
           minecraftVersionsSummary = builtins.fromJSON (builtins.readFile "${mcmeta-summary}/versions/data.json");
         };
       in {
-        inherit (builder) buildDataPack;
+        inherit (builder) buildDataPack joinDataPacks;
       };
       templates = {
         default = {
@@ -38,21 +38,7 @@
     in {
       formatter = pkgs.alejandra;
 
-      packages = let
-        # Based on the definition of symlinkJoin but specific to merging datapacks.
-        # This makes releasing and testing a bit simpler
-        joinDataPacks = name: packages:
-          pkgs.runCommand name {
-            inherit packages;
-            passAsFile = ["packages"];
-          } ''
-            mkdir -p $out/datapacks $out/source
-            for path in $(cat $packagesPath); do
-              cp $path/datapacks/* $out/datapacks
-              cp -R $path/source/* $out/source
-            done
-          '';
-      in rec {
+      packages = rec {
         afk = pkgs.callPackage ./afk {};
         afk-sleep = pkgs.callPackage ./afk-sleep {};
         afk-message = pkgs.callPackage ./afk-message {};
@@ -60,8 +46,7 @@
         pause-day-cycle = pkgs.callPackage ./pause-day-cycle {};
         chickenfix = pkgs.callPackage ./chickenfix {};
 
-        default = all;
-        all = joinDataPacks "clo4-datapacks" [
+        all = pkgs.joinDataPacks "clo4-datapacks" [
           afk
           afk-sleep
           afk-message
@@ -69,6 +54,7 @@
           pause-day-cycle
           chickenfix
         ];
+        default = all;
       };
     }));
 }

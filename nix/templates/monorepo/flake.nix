@@ -31,10 +31,10 @@
         first-data-pack = pkgs.callPackage ./first-data-pack {};
         second-data-pack = pkgs.callPackage ./second-data-pack {};
 
-        all = pkgs.symlinkJoin {
-          name = "all-data-packs";
-          paths = [first-data-pack second-data-pack];
-        };
+        all = pkgs.joinDataPacks "all-data-packs" [
+          first-data-pack
+          second-data-pack
+        ];
         default = all;
       };
     });

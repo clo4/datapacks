@@ -60,9 +60,6 @@ to change it over time.
 
 You can use this same structure to define multiple output packages.
 
-Unlike `stdenv.mkDerivation`, I'm actually documenting the arguments this takes
-;)
-
 - `name` is a **string** which is the name of the data pack
 - `version` is a **string**, the version of the data pack
 - `src` is a **path** to a directory containing the `pack.mcmeta` - this is the
@@ -82,3 +79,8 @@ Unlike `stdenv.mkDerivation`, I'm actually documenting the arguments this takes
 
 You can still use any of the other attributes that `stdenv.mkDerivation` uses,
 although this is all that is necessary to use to build a data pack.
+
+The overlay also provides the `joinDataPacks` function, which is used to build
+multiple data packs and produce a single output containing all of them and all
+their sources. There is an example usage of this
+[in the `monorepo` template](./templates/monorepo/flake.nix).
