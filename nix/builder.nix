@@ -42,7 +42,12 @@
     #
     nativeBuildInputs ? [],
   } @ attrs: let
-    # List of versions, grouped by pack format, sorted by release date (newest first)
+    # Attrset of pack formats containing lists of versions, sorted by data version.
+    # The data version is guaranteed to increment with every release, which makes it
+    # a stable way to sort the versions.
+    # The data contained in each list item can be seen here:
+    # https://github.com/misode/mcmeta/blob/summary/versions/data.json
+    # Even though the data is already sorted, sorting it again ensures correctness.
     packFormats = let
       groupedPackFormats =
         builtins.groupBy

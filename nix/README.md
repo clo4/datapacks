@@ -16,7 +16,7 @@ to change it over time.
 ```nix
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
     # This is used so your pack formats can be updated independently
