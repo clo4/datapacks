@@ -86,6 +86,10 @@ You can use this same structure to define multiple output packages.
 You can still use any of the other attributes that `stdenv.mkDerivation` uses,
 although this is all that is necessary to use to build a data pack.
 
+In any of the phases, including your `preprocess` step, you have access to the
+`packName` environment variable. This is the name, not including the extension,
+of the output pack.
+
 The overlay also provides the `joinDataPacks` function, which is used to build
 multiple data packs and produce a single output containing all of them and all
 their sources. There is an example usage of this

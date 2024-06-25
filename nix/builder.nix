@@ -118,6 +118,12 @@
         packFormat.min)
       .id;
 
+    # The default name format is designed to indicate, at a glance, what the
+    # name, version, and supported game versions are - in that order.
+    # Most of the complexity of this builder is because I want the supported
+    # game versions to be generated from the pack formats rather than specified
+    # by the end user. This is partly for convenience, but largely for
+    # correctness.
     defaultNameFormat = {
       name,
       version,
@@ -136,6 +142,11 @@
         then "${maxGameVersionWithZero}"
         else "${minGameVersion}-${maxGameVersionWithZero}";
     in "${name}+v${version}+mc${gameVersionRange}";
+
+    formatName =
+      if ! builtins.isNull packNameFormat
+      then packNameFormat
+      else defaultNameFormat;
   in
     stdenvNoCC.mkDerivation ((builtins.removeAttrs attrs ["name"])
       // {
@@ -151,8 +162,17 @@
           ]
           ++ nativeBuildInputs;
 
-        zipFiles = ["data" "pack.mcmeta" "pack.png"] ++ include;
+        filesToInclude = ["data" "pack.mcmeta" "pack.png"] ++ include;
 
+        # By default there is likely nothing to patch because there's no system
+        # dependent logic happening, but it's not impossible to need the default
+        # logic for it. The patch phase is just disabled by default.
+        dontPatch = attrs.dontPatch or true;
+
+        # I'm not 100% sure this is the right place to put this logic but it
+        # makes sense to me because the idea of the preprocess script is to get
+        # the directory into the state where you can build the finished zip file,
+        # and that seems like "configuring" to me.
         configurePhase =
           attrs.configurePhase
           or ''
@@ -175,7 +195,7 @@
             # the default behaviour of `zip` is to just ignore files that don't exist.
             # Because there's no reason that would ever be a mistake, right?
             # Anyway, works for us, not complaining.
-            zip -r datapack.zip $zipFiles
+            zip -r datapack.zip $filesToInclude
 
             runHook postBuild
           '';
@@ -192,28 +212,33 @@
             runHook postCheck
           '';
 
+        # This is just a variable that can be used in any phase. It's the
+        # generated name of the final zip file and source directory.
+        packName = formatName {
+          inherit
+            name
+            version
+            minGameVersion
+            maxGameVersion
+            ;
+        };
         installPhase =
           attrs.installPhase
-          or (let
-            formatName =
-              if ! builtins.isNull packNameFormat
-              then packNameFormat
-              else defaultNameFormat;
-            outputName = formatName {inherit name version minGameVersion maxGameVersion;};
-          in ''
+          or ''
             runHook preInstall
 
             # using `datapacks` for zips, `dist` for unzipped sources
-            mkdir -p $out/datapacks $out/source/${outputName}
+            mkdir -p $out/datapacks $out/source/"$packName"
 
-            mv datapack.zip $out/datapacks/${outputName}.zip
-            mv $zipFiles $out/source/${outputName}
+            mv datapack.zip $out/datapacks/"$packName".zip
+            cp -R $filesToInclude $out/source/"$packName"
 
             runHook postInstall
-          '');
+          '';
 
         # This phase is unnecessary because there is no executable binary
         # being produced, only a static asset.
+        dontFixup = attrs.dontFixup or true;
         fixupPhase =
           attrs.fixupPhase
           or ''
@@ -223,6 +248,7 @@
 
         # This phase is unnecessary because the source is produced as part
         # of the normal build phase.
+        doDist = attrs.doDist or false;
         distPhase =
           attrs.distPhase
           or ''
@@ -232,6 +258,7 @@
 
         # This phase is unnecessary because once the data pack has been moved
         # to the `datapacks` folder there is nothing left to check.
+        doInstallCheck = attrs.doInstallCheck or false;
         installCheckPhase =
           attrs.installCheckPhase
           or ''
