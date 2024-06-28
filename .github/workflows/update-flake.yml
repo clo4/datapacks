@@ -1,0 +1,29 @@
+name: "Update flake.lock"
+
+# Four times per day or when triggered manually
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: cachix/install-nix-action@v27
+      with:
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Update flake.lock
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        nix flake update mcmeta-summary --commit-lock-file
+
+    # If it fails to build, we don't want to push
+    - name: Test build
+      run: nix build
+      
+    - name: Push to main
+      run: git push
