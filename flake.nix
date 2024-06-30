@@ -35,8 +35,17 @@
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-    in {
+    in rec {
       formatter = pkgs.alejandra;
+      devShells.default = pkgs.mkShell {
+        packages = [
+          pkgs.nixd
+          pkgs.deno
+          pkgs.zip
+          pkgs.unzip
+          formatter
+        ];
+      };
 
       packages = rec {
         afk = pkgs.callPackage ./afk {};
