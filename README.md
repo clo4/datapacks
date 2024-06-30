@@ -135,10 +135,11 @@ nix flake init -t github:clo4/datapacks#monorepo
 ```
 
 If you're running into issues with the pack formats causing your build to fail,
-make sure you have the latest pack formats:
+make sure you have the latest version of this flake. It may be, at most, 6h15m
+hours out of date.
 
 ```bash
-nix flake lock --update-input mcmeta-summary
+nix flake update
 ```
 
 ## Contributing
