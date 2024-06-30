@@ -5,13 +5,14 @@
   minecraftVersionsSummary,
   lib,
   runCommand,
-}: rec {
+}: {
   # Based on the definition of symlinkJoin but specific to merging datapacks.
   # This makes releasing and testing a bit simpler
   joinDataPacks = name: packages:
     runCommand name {
       inherit packages;
       passAsFile = ["packages"];
+      meta.description = "Create a derivation with the outputs of multiple data packs";
     } ''
       mkdir -p $out/datapacks $out/source
       for path in $(cat $packagesPath); do
@@ -152,6 +153,11 @@
       // {
         pname = name;
         inherit version src preprocess;
+
+        meta = {
+          description = "Builds a Minecraft data pack from a directory";
+          platforms = lib.platforms.all;
+        };
 
         strictDeps = true;
         passAsFile = ["preprocess"] ++ (attrs.passAsFile or []);
