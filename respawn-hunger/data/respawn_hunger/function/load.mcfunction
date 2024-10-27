@@ -1,0 +1,1 @@
+scoreboard objectives add respawn_hunger.death_count deathCount

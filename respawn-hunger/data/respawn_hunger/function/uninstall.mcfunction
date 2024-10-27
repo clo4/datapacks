@@ -1,0 +1,1 @@
+scoreboard objectives remove respawn_hunger.death_count
