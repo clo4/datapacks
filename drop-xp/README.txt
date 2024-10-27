@@ -57,7 +57,7 @@ EXCLUDE PLAYERS FROM DROPPING XP
 This data pack also allows you to exclude players from losing their XP. Tag them
 as 'drop_xp.ignored', for example:
 
-    /tag SomeUsernameHere add drop_xp.ignored
+    /tag SomeUsernameHere add drop_xp.ignore
 
 It should go without saying, but players not in survival or adventure mode will not
 lose their XP upon death.

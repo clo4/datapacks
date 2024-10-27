@@ -14,7 +14,7 @@ execute store result score .keepInventory_is_enabled drop_xp.tmp run gamerule ke
 # - Not configured to drop 0% of their XP
 execute \
   if score .keepInventory_is_enabled drop_xp.tmp matches 1 \
-  if entity @s[gamemode=!creative,gamemode=!spectator,tag=!drop_xp.ignored] \
+  if entity @s[gamemode=!creative,gamemode=!spectator,tag=!drop_xp.ignore] \
   unless score .drop_percentage drop_xp.config matches 0 \
   as @s at @s \
   run \
