@@ -6,7 +6,8 @@
     { "path": "afk-dim-names", "name": "AFK Dim Names" },
     { "path": "afk-message", "name": "AFK Message" },
     { "path": "pause-day-cycle", "name": "Pause Day Cycle" },
-    { "path": "chickenfix", "name": "Chickenfix" }
+    { "path": "chickenfix", "name": "Chickenfix" },
+    { "path": "drop-xp", "name": "Drops XP with keepInventory" }
   ],
   "settings": {
     // Keep this in sync with the folders above. Not using a glob
@@ -18,7 +19,8 @@
       "afk-dim-names": true,
       "afk-message": true,
       "pause-day-cycle": true,
-      "chickenfix": true
+      "chickenfix": true,
+      "drop-xp": true
     },
     "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
