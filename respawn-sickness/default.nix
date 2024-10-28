@@ -1,6 +1,6 @@
 { buildDataPack }:
 buildDataPack {
-  name = "respawn-hunger";
+  name = "respawn-sickness";
   version = "1.0.0";
 
   src = ./.;
