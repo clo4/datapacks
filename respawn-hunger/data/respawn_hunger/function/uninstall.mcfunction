@@ -1,1 +1,2 @@
 scoreboard objectives remove respawn_hunger.death_count
+schedule clear respawn_hunger:loop

@@ -9,10 +9,6 @@ scoreboard objectives add drop_xp.const dummy
 scoreboard objectives add drop_xp.dropped_xp dummy
 scoreboard objectives add drop_xp.xp_orb_values dummy
 
-# The deathCount type is not automatically populated with each player's previous deaths,
-# which is exactly what we want. No need to reset scores after creating this scoreboard.
-scoreboard objectives add drop_xp.death_count deathCount
-
 # Used as the denominator for the equation in player_died
 scoreboard players set .100 drop_xp.const 100
 

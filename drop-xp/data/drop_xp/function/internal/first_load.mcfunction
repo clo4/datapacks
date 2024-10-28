@@ -4,4 +4,4 @@ scoreboard players set .has_loaded_once drop_xp.config 1
 # they will not be confused by their choice not being respected on server restart
 gamerule keepInventory true
 
-function drop_xp:set_percent_by_difficulty
+function drop_xp:cmd/set_percent_by_difficulty

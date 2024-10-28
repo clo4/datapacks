@@ -29,7 +29,7 @@ as a default.
 If you change the difficulty and want to use the default value for that difficulty,
 run the following command:
 
-    /function drop_xp:set_percent_by_difficulty
+    /function drop_xp:cmd/set_percent_by_difficulty
 
 You can manually set the percentage. The command below, for example, sets the
 amount that you will drop on death to 90%.
@@ -55,9 +55,31 @@ at level 30:
 EXCLUDE PLAYERS FROM DROPPING XP
 
 This data pack also allows you to exclude players from losing their XP. Tag them
-as 'drop_xp.ignored', for example:
+as 'drop_xp.ignore', for example:
 
     /tag SomeUsernameHere add drop_xp.ignore
 
 It should go without saying, but players not in survival or adventure mode will not
 lose their XP upon death.
+
+---
+
+INSTANT RESPAWN (DOIMMEDIATERESPAWN)
+
+When you're using 'doImmediateRespawn', dead players will still lose their XP but
+it will not drop on the ground as experience orbs. This is a known issue but is
+unlikely to be fixed.
+
+---
+
+LOSING CURSE OF VANISHING ITEMS
+
+As a little bonus (and so I don't have to make yet another data pack) you can also
+enable clearing 'Curse of Vanishing' items on death, too.
+
+    /scoreboard players set .clear_curse_of_vanishing drop_xp.config 1
+
+Players ignored by the tag 'drop_xp.ignore' WILL NOT be ignored for this. You must
+use a different tag, 'drop_xp.ignore_curse_of_vanishing'
+
+    /tag SomeUsernameHere add drop_xp.ignore_curse_of_vanishing
