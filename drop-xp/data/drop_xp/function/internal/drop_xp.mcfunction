@@ -1,3 +1,8 @@
+# As a sanity check, if the configured drop percentage is out of bounds, it will be
+# brought back within the range of allowed values.
+execute if score .drop_percentage drop_xp.settings matches 101.. run scoreboard players set .drop_percentage drop_xp.settings 100
+execute if score .drop_percentage drop_xp.settings matches ..-1 run scoreboard players set .drop_percentage drop_xp.settings 0
+
 execute as @s store result score @s drop_xp.dropped_xp run xp query @s levels
 
 # Work can be skipped if there are no levels to drop

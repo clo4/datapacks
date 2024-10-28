@@ -1,7 +1,6 @@
 scoreboard objectives add respawn_sickness.settings dummy
 scoreboard objectives add respawn_sickness.death_count deathCount
 
-scoreboard players set .hunger_penalty respawn_sickness.settings 1
-scoreboard players set .health_penalty respawn_sickness.settings 0
+execute unless score .has_loaded_once respawn_sickness.settings matches 1 run function respawn_sickness:internal/first_load
 
 function respawn_sickness:internal/loop
