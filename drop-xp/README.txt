@@ -34,7 +34,7 @@ run the following command:
 You can manually set the percentage. The command below, for example, sets the
 amount that you will drop on death to 90%.
 
-    /scoreboard players set .drop_percentage drop_xp.config 90
+    /scoreboard players set .drop_percentage drop_xp.settings 90
 
 ---
 
@@ -77,7 +77,7 @@ LOSING CURSE OF VANISHING ITEMS
 As a little bonus (and so I don't have to make yet another data pack) you can also
 enable clearing 'Curse of Vanishing' items on death, too.
 
-    /scoreboard players set .clear_curse_of_vanishing drop_xp.config 1
+    /scoreboard players set .clear_curse_of_vanishing drop_xp.settings 1
 
 Players ignored by the tag 'drop_xp.ignore' WILL NOT be ignored for this. You must
 use a different tag, 'drop_xp.ignore_curse_of_vanishing'

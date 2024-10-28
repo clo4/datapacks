@@ -4,7 +4,7 @@ execute as @s store result score @s drop_xp.dropped_xp run xp query @s levels
 execute if score @s drop_xp.dropped_xp matches 0 run return 0
 
 # drop = (level * percent) / 100
-scoreboard players operation @s drop_xp.dropped_xp *= .drop_percentage drop_xp.config
+scoreboard players operation @s drop_xp.dropped_xp *= .drop_percentage drop_xp.settings
 scoreboard players operation @s drop_xp.dropped_xp /= .100 drop_xp.const
 
 # Skip further execution if the player would not lose any levels

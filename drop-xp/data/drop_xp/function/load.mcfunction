@@ -2,7 +2,7 @@
 
 #declare storage drop_xp:remove_xp_storage Arguments to call the set_percentage function with.
 
-scoreboard objectives add drop_xp.config dummy
+scoreboard objectives add drop_xp.settings dummy
 scoreboard objectives add drop_xp.tmp dummy
 scoreboard objectives add drop_xp.const dummy
 
@@ -22,4 +22,4 @@ scoreboard players set .7 drop_xp.const 7
 scoreboard players set .3 drop_xp.const 3
 scoreboard players set .1 drop_xp.const 1
 
-execute unless score .has_loaded_once drop_xp.config matches 1 run function drop_xp:internal/first_load
+execute unless score .has_loaded_once drop_xp.settings matches 1 run function drop_xp:internal/first_load

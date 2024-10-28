@@ -2,8 +2,8 @@ advancement revoke @s only drop_xp:die
 
 # As a sanity check, if the configured drop percentage is out of bounds, it will be
 # brought back within the range of allowed values.
-execute if score .drop_percentage drop_xp.config matches 101.. run scoreboard players set .drop_percentage drop_xp.config 100
-execute if score .drop_percentage drop_xp.config matches ..-1 run scoreboard players set .drop_percentage drop_xp.config 0
+execute if score .drop_percentage drop_xp.settings matches 101.. run scoreboard players set .drop_percentage drop_xp.settings 100
+execute if score .drop_percentage drop_xp.settings matches ..-1 run scoreboard players set .drop_percentage drop_xp.settings 0
 
 execute store result score .keepInventory_is_enabled drop_xp.tmp run gamerule keepInventory
 
@@ -15,7 +15,7 @@ execute store result score .keepInventory_is_enabled drop_xp.tmp run gamerule ke
 execute \
   if score .keepInventory_is_enabled drop_xp.tmp matches 1 \
   if entity @s[gamemode=!creative,gamemode=!spectator,tag=!drop_xp.ignore] \
-  unless score .drop_percentage drop_xp.config matches 0 \
+  unless score .drop_percentage drop_xp.settings matches 0 \
   as @s at @s \
   run \
     function drop_xp:internal/drop_xp
@@ -25,7 +25,7 @@ execute \
 # it could cause parser errors in 1.20.2, which is supposed to be fully supported.
 execute store result score .data_version drop_xp.tmp run data get entity @s DataVersion
 execute \
-  if score .clear_curse_of_vanishing drop_xp.config matches 1 \
+  if score .clear_curse_of_vanishing drop_xp.settings matches 1 \
   if score .data_version drop_xp.tmp matches 3819.. \
   if entity @s[gamemode=!creative,gamemode=!spectator,tag=!drop_xp.ignore_curse_of_vanishing] \
   as @s at @s \
