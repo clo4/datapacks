@@ -17,6 +17,8 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [AFK Sleep](#afk-sleep)
     - [AFK Message](#afk-message)
     - [AFK Dim Names](#afk-dim-names)
+    - [Drop XP](#drop-xp)
+    - [Respawn Sickness](#respawn-sickness)
   - [Nix Build System](#nix-build-system)
   - [Contributing](#contributing)
 
@@ -113,6 +115,30 @@ becomes AFK or returns to the game.
 
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
+
+### Drop XP
+
+[View and download on Modrinth](https://modrinth.com/datapack/drop-xp)
+
+Players lose levels when they die with `keepInventory` on. Gives players a
+reason to not die when playing, without making death punishing.
+
+Exclude players from this mechanic using a tag: `/tag add clo4_ drop_xp.ignore`
+
+Optionally, enable losing _Curse of Vanishing_ items on death too:
+`/function drop_xp:cmd/toggle_curse_of_vanishing`, and opt players out with a
+tag: `/tag clo4_ add drop_xp.ignore_curse_of_vanishing`
+
+### Respawn Sickness
+
+[View and download on Modrinth](https://modrinth.com/datapack/respawn-sickness)
+
+Players respawn with a hunger penalty, and optionally a health penalty. Built to
+be used with `keepInventory` to remove the early-game incentive to die to reset
+your hunger.
+
+Exclude players from this mechanic using a tag:
+`/tag add clo4_ respawn_sickness.ignore`
 
 ## Nix Build System
 
