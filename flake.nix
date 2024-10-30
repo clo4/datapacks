@@ -53,8 +53,17 @@
             pkgs.zip
             pkgs.unzip
             pkgs.fish
+            self.packages.${system}.build-and-copy
             formatter
           ];
+        };
+
+        apps = rec {
+          default = build-and-copy;
+          build-and-copy = {
+            type = "app";
+            program = "${self.packages.${system}.build-and-copy}/bin/build-and-copy";
+          };
         };
 
         packages = rec {
@@ -78,6 +87,11 @@
             respawn-sickness
           ];
           default = all;
+
+          build-and-copy = pkgs.writeScriptBin "build-and-copy" ''
+            #!${pkgs.fish}/bin/fish
+            ${builtins.readFile ./nix/build-and-copy.fish}
+          '';
         };
       }
     ));

@@ -181,6 +181,14 @@ system too - I don't really have a good solution for you, but this project does
 use GitHub Actions to build the project in CI and publishes an artifact from
 that.
 
+There's a shortcut for copying to a testing world too. Create a `.env` file in
+the root of the repository, and export a variable named `DATAPACK_DIR` (a path
+to a world's 'datapacks' directory). Then, you can either run the script using
+`nix run .#`, or as `build-and-copy` in the dev shell. If you're using direnv
+and have approved the .envrc, this script will already be available to you in
+your environment. This script optionally takes the names of the data packs to
+build. See the `--help` output for more information.
+
 ### Philosophy
 
 I value composability over functionality, preferring to have less built in to

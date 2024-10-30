@@ -1,6 +1,16 @@
-#!/usr/bin/env fish
+argparse --name=build-test h/help z/zip -- $argv
 
-argparse --name=build-test z/zip -- $argv
+if set -q _flag_help
+    echo "Usage: build-and-copy [OPTIONS] [DATAPACK]..."
+    echo
+    echo "Builds and copies data packs to a world, for faster iteration."
+    echo "Requires \$DATAPACK_DIR to be set."
+    echo
+    echo "Options:"
+    echo "  -h, --help    Print this message"
+    echo "  -z, --zip     Copy the zipped files instead of source directories"
+    exit
+end
 
 set datapack_result_directory source
 if set -q _flag_zip
