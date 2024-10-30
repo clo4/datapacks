@@ -52,8 +52,18 @@
             pkgs.deno
             pkgs.zip
             pkgs.unzip
+            pkgs.fish
+            self.packages.${system}.build-and-copy
             formatter
           ];
+        };
+
+        apps = rec {
+          default = build-and-copy;
+          build-and-copy = {
+            type = "app";
+            program = "${self.packages.${system}.build-and-copy}/bin/build-and-copy";
+          };
         };
 
         packages = rec {
@@ -63,6 +73,8 @@
           afk-dim-names = pkgs.callPackage ./afk-dim-names { };
           pause-day-cycle = pkgs.callPackage ./pause-day-cycle { };
           chickenfix = pkgs.callPackage ./chickenfix { };
+          drop-xp = pkgs.callPackage ./drop-xp { };
+          respawn-sickness = pkgs.callPackage ./respawn-sickness { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
             afk
@@ -71,8 +83,15 @@
             afk-dim-names
             pause-day-cycle
             chickenfix
+            drop-xp
+            respawn-sickness
           ];
           default = all;
+
+          build-and-copy = pkgs.writeScriptBin "build-and-copy" ''
+            #!${pkgs.fish}/bin/fish
+            ${builtins.readFile ./nix/build-and-copy.fish}
+          '';
         };
       }
     ));

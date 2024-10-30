@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "pack_format": 8,
+    "description": "Adds more consequences for dying (lose hunger and health)",
+    "supported_formats": [8, 57]
+  }
+}
