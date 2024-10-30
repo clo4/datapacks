@@ -1,6 +1,6 @@
 # For some reason, Mojang chose to drop 7 points per level that you lost when you died.
 # That's... not a lot. Maybe a TODO, make this configurable, so you can recover more?
-scoreboard players operation @s drop_xp.xp_orb_values = @s drop_xp.dropped_xp
+scoreboard players operation @s drop_xp.xp_orb_values = @s drop_xp.lost_levels
 scoreboard players operation @s drop_xp.xp_orb_values *= .7 drop_xp.const
 
 # The game splits the total number of points that you lost into various sizes, greedily putting as

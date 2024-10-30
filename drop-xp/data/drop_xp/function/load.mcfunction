@@ -6,7 +6,7 @@ scoreboard objectives add drop_xp.settings dummy
 scoreboard objectives add drop_xp.tmp dummy
 scoreboard objectives add drop_xp.const dummy
 
-scoreboard objectives add drop_xp.dropped_xp dummy
+scoreboard objectives add drop_xp.lost_levels dummy
 scoreboard objectives add drop_xp.xp_orb_values dummy
 
 # Used as the denominator for the equation in player_died
