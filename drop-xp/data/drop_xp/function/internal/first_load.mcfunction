@@ -1,4 +1,5 @@
 scoreboard players set .has_loaded_once drop_xp.settings 1
+scoreboard players add .clear_curse_of_vanishing drop_xp.settings 0
 
 # Only enabling this on first run means if an operator changes this gamerule afterwards
 # they will not be confused by their choice not being respected on server restart
