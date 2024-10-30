@@ -52,6 +52,7 @@
             pkgs.deno
             pkgs.zip
             pkgs.unzip
+            pkgs.fish
             formatter
           ];
         };
