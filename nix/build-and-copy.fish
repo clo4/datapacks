@@ -23,18 +23,30 @@ if not set -q DATAPACK_DIR
     exit 1
 end
 
-if test (count $argv) -eq 0
-    set $argv default
+set git_root (git rev-parse --git-dir | path dirname)
+
+set datapacks_to_build
+for arg in $argv
+    set pack_name (path basename -- $arg)
+    if test ! -d $git_root/$pack_name
+        echo "Invalid pack name: '$pack_name'"
+        exit 1
+    end
+    set --append datapacks_to_build $pack_name
+end
+
+if test (count $datapacks_to_build) -eq 0
+    set $datapacks_to_build default
 end
 
 for result in result*
     rm $result
 end
 
-if test (count $argv) -eq 1
-    set build_pkgs .#$argv
+if test (count $datapacks_to_build) -eq 1
+    set build_pkgs .#$datapacks_to_build
 else
-    set build_pkgs .#{(string join , -- $argv)}
+    set build_pkgs .#{(string join , -- $datapacks_to_build)}
 end
 
 nix build $build_pkgs
@@ -45,6 +57,7 @@ for datapack in $DATAPACK_DIR/*
 end
 
 for datapack in result*/$datapack_result_directory/*
+    echo "Copying $(path basename -- $datapack)"
     cp -R "$datapack" "$DATAPACK_DIR"
 end
 
