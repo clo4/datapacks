@@ -73,8 +73,6 @@
           afk-dim-names = pkgs.callPackage ./afk-dim-names { };
           pause-day-cycle = pkgs.callPackage ./pause-day-cycle { };
           chickenfix = pkgs.callPackage ./chickenfix { };
-          drop-xp = pkgs.callPackage ./drop-xp { };
-          respawn-sickness = pkgs.callPackage ./respawn-sickness { };
           no-free-deaths = pkgs.callPackage ./no-free-deaths { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
@@ -84,8 +82,6 @@
             afk-dim-names
             pause-day-cycle
             chickenfix
-            drop-xp
-            respawn-sickness
             no-free-deaths
           ];
           default = all;
