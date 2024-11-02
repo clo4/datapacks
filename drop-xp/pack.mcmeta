@@ -1,7 +1,0 @@
-{
-  "pack": {
-    "pack_format": 18,
-    "description": "With keepInventory on, players will drop XP on death.",
-    "supported_formats": [18, 57]
-  }
-}

@@ -17,10 +17,10 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [AFK Sleep](#afk-sleep)
     - [AFK Message](#afk-message)
     - [AFK Dim Names](#afk-dim-names)
-    - [Drop XP](#drop-xp)
-    - [Respawn Sickness](#respawn-sickness)
+    - [No Free Deaths](#no-free-deaths)
   - [Nix Build System](#nix-build-system)
   - [Contributing](#contributing)
+    - [Philosophy](#philosophy)
 
 ## Datapacks
 
@@ -116,29 +116,49 @@ becomes AFK or returns to the game.
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
 
-### Drop XP
+### No Free Deaths
 
-[View and download on Modrinth](https://modrinth.com/datapack/drop-xp)
+[View and download on Modrinth](https://modrinth.com/datapack/afk-dim-names)
 
-Players lose levels when they die with `keepInventory` on. Gives players a
-reason to not die when playing, without making death punishing.
+Adds consequences to death when playing with `keepInventory`. By adding
+carefully thought out penalties, players don't abuse death as a free
+teleportation tool and hunger reset.
 
-Exclude players from this mechanic using a tag: `/tag add clo4_ drop_xp.ignore`
+**Core features**
 
-Optionally, enable losing _Curse of Vanishing_ items on death too:
-`/function drop_xp:cmd/toggle_curse_of_vanishing`, and opt players out with a
-tag: `/tag clo4_ add drop_xp.ignore_curse_of_vanishing`
+- Can be disabled per player
+- Curse of Vanishing works as expected (requires Minecraft 1.20.5+)
+- Players respawn with a hunger penalty
+- Lose levels on death like in vanilla
+- Difficulty based XP-loss
+  - Easy: 50%, Normal: 75%, Hard: 100%
 
-### Respawn Sickness
+Players can be opted out of the consequences if they prefer a more relaxed
+gaming experience. Per-player opt-out means _everyone_ can play how they want
+to.
 
-[View and download on Modrinth](https://modrinth.com/datapack/respawn-sickness)
+```mcfunction
+/execute as USERNAME run function no_free_deaths:cmd/opt_out
+```
 
-Players respawn with a hunger penalty, and optionally a health penalty. Built to
-be used with `keepInventory` to remove the early-game incentive to die to reset
-your hunger.
+Every penalty can be toggled individually:
 
-Exclude players from this mechanic using a tag:
-`/tag add clo4_ respawn_sickness.ignore`
+```mcfunction
+function no_free_deaths:cmd/toggle_drop_xp
+function no_free_deaths:cmd/toggle_curse_of_vanishing
+function no_free_deaths:cmd/toggle_respawn_hunger_penalty
+
+# NOT ENABLED BY DEFAULT
+function no_free_deaths:cmd/toggle_respawn_health_penalty
+```
+
+The percentage of levels lost on death is set automatically when the data pack
+is loaded and will not be changed unless it is manually updated. It's a bit
+verbose, but can be changed to a custom amount e.g. `90` to lose 90% of levels.
+
+```mcfunction
+/scoreboard players set .drop_percentage no_free_deaths.drop_xp.settings [percent]
+```
 
 ## Nix Build System
 

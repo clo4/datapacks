@@ -1,0 +1,1 @@
+scoreboard players set .enable_respawn_hunger_penalty no_free_deaths.settings 1
