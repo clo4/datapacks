@@ -75,6 +75,7 @@
           chickenfix = pkgs.callPackage ./chickenfix { };
           drop-xp = pkgs.callPackage ./drop-xp { };
           respawn-sickness = pkgs.callPackage ./respawn-sickness { };
+          no-free-deaths = pkgs.callPackage ./no-free-deaths { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
             afk
@@ -85,6 +86,7 @@
             chickenfix
             drop-xp
             respawn-sickness
+            no-free-deaths
           ];
           default = all;
 

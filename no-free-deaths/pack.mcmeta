@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "pack_format": 18,
+    "description": "No more free deaths. It's keepInventory with consequences (for those that want them).",
+    "supported_formats": [18, 57]
+  }
+}

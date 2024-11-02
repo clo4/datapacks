@@ -1,0 +1,6 @@
+{
+    "values": [
+        "no_free_deaths:mechanic/drop_xp/on_death",
+        "no_free_deaths:mechanic/curse_of_vanishing/on_death"
+    ]
+}

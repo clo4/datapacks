@@ -1,0 +1,4 @@
+scoreboard objectives remove no_free_deaths.drop_xp.settings
+scoreboard objectives remove no_free_deaths.drop_xp.const
+scoreboard objectives remove no_free_deaths.drop_xp.lost_levels
+scoreboard objectives remove no_free_deaths.drop_xp.xp_orb_values
