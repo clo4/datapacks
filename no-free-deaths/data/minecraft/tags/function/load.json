@@ -1,1 +1,9 @@
-{ "values": ["no_free_deaths:load"] }
+{
+    "values": [
+        "no_free_deaths:load",
+        "no_free_deaths:mechanic/drop_xp/load",
+        "no_free_deaths:mechanic/curse_of_vanishing/load",
+        "no_free_deaths:mechanic/respawn_health_penalty/load",
+        "no_free_deaths:mechanic/respawn_hunger_penalty/load"
+    ]
+}
