@@ -3,7 +3,6 @@
 # It would be a *lot* of effort because you'd need to do some fun calculations to actually
 # figure out the amount of "points" the player had, although since I know Keep Some Inventory 
 # supports fully recovering your XP, they must have an implementation of this.
-scoreboard players operation @s no_free_deaths.drop_xp.xp_orb_values = @s no_free_deaths.drop_xp.lost_levels
 scoreboard players operation @s no_free_deaths.drop_xp.xp_orb_values *= .7 no_free_deaths.drop_xp.const
 
 # The game splits the total number of points that you lost into various sizes, greedily putting as

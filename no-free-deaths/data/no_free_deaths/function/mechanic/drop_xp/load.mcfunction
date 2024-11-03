@@ -1,6 +1,7 @@
 scoreboard objectives add no_free_deaths.drop_xp.settings dummy
 scoreboard objectives add no_free_deaths.drop_xp.const dummy
 scoreboard objectives add no_free_deaths.drop_xp.lost_levels dummy
+scoreboard objectives add no_free_deaths.drop_xp.levels_to_remove dummy
 scoreboard objectives add no_free_deaths.drop_xp.xp_orb_values dummy
 
 # Used as the denominator for the equation in on_death

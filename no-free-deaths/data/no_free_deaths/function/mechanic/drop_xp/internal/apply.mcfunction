@@ -4,10 +4,6 @@ execute as @s store result score @s no_free_deaths.drop_xp.lost_levels run xp qu
 # This feels better than keeping them.
 xp set @s 0 points
 
-# Work can be skipped if there are no levels to drop, since we've already removed any
-# points that the player had.
-execute if score @s no_free_deaths.drop_xp.lost_levels matches 0 run return 0
-
 # lost_levels = (player_level * percent) // 100
 #
 # As a special case, if the player has 1 level, they will always lose it. Mathematically
@@ -17,12 +13,13 @@ execute if score @s no_free_deaths.drop_xp.lost_levels matches 0 run return 0
 execute if score @s no_free_deaths.drop_xp.lost_levels matches 2.. run scoreboard players operation @s no_free_deaths.drop_xp.lost_levels *= .drop_percentage no_free_deaths.drop_xp.settings
 execute if score @s no_free_deaths.drop_xp.lost_levels matches 2.. run scoreboard players operation @s no_free_deaths.drop_xp.lost_levels /= .100 no_free_deaths.drop_xp.const
 
-execute store result storage drop_xp:remove_xp_storage levels int 1 run scoreboard players get @s no_free_deaths.drop_xp.lost_levels
-execute as @s run function no_free_deaths:mechanic/drop_xp/internal/macro/remove_xp with storage drop_xp:remove_xp_storage
+scoreboard players operation @s no_free_deaths.drop_xp.levels_to_remove = @s no_free_deaths.drop_xp.lost_levels
+execute if score @s no_free_deaths.drop_xp.levels_to_remove matches 1.. as @s run function no_free_deaths:mechanic/drop_xp/internal/remove_xp
 
+# NOTE: With doImmediateRespawn, this would be triggered *after* the player respawns, so if it is enabled,
+# there isn't really a sane way to summon the XP orbs. While player do now store their last death location,
+# making the XP spawn there would massively complicate the logic for something that almost nobody uses.
 execute store result score .do_immediate_respawn_is_enabled no_free_deaths.tmp run gamerule doImmediateRespawn
 
-# TODO: When doImmediateRespawn is enabled, center on the location of LastDeathLocation.pos and
-# summon the orbs there.
-# 2024-10-27: Attempted to make this work, but couldn't. I'll give it another go eventually.
-execute if score .do_immediate_respawn_is_enabled no_free_deaths.tmp matches 0 run function no_free_deaths:mechanic/drop_xp/internal/summon_orbs
+scoreboard players operation @s no_free_deaths.drop_xp.xp_orb_values = @s no_free_deaths.drop_xp.lost_levels
+execute if score @s no_free_deaths.drop_xp.xp_orb_values matches 1.. if score .do_immediate_respawn_is_enabled no_free_deaths.tmp matches 0 run function no_free_deaths:mechanic/drop_xp/internal/summon_orbs
