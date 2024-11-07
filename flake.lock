@@ -22,10 +22,10 @@
       "flake": false,
       "locked": {
         "lastModified": 1730899918,
-        "narHash": "sha256-g8Slmg5c/tVvTakfG8pWihB8E6x4e3HeTYHMKD8VrNo=",
+        "narHash": "sha256-cwSpcVQb6EIBrIfoSwmPugNWZ78EJ9iby3ndUs0UH/0=",
         "owner": "misode",
         "repo": "mcmeta",
-        "rev": "71d9c9c34fbfe524033d83a3f3ee7a83a1ba4edf",
+        "rev": "7836b8fbd3800aca795b0181beb8715dbc10fa0d",
         "type": "github"
       },
       "original": {
