@@ -8,3 +8,6 @@ scoreboard objectives add afk_sleep.dummy dummy
 #declare storage afk_sleep:set_percentage_args Arguments to call the set_percentage function with.
 
 execute unless score .hasLoadedOnce afk_sleep.dummy matches 1 run function afk_sleep:first_load
+
+# Resetting this on load means the first player to sleep will be the one that sets the data version
+scoreboard players reset .dataVersion afk_sleep.dummy

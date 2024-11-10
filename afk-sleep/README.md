@@ -7,3 +7,6 @@ older versions a slower method of setting the `playersSleepingPercentage`
 gamerule is used (checking every single number between 1 and 100). This logic is
 applied in a patch after the `functions` and `advancments` directories are
 duplicated for pre-1.21 versions.
+
+Instead of using a patch for predicates, there is a `predicates` directory
+containing any predicates that need to be backported.

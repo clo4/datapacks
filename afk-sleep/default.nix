@@ -8,11 +8,10 @@ buildDataPack {
   preprocess = ''
     shopt -s nullglob globstar
     pushd data
-    for dir in **/function **/advancement; do
+    for dir in **/function **/advancement **/predicate; do
       cp -r $dir ''${dir}s
     done
     popd
-    patch -p0 -f -i clumsy_no_macro_compat.patch
     touch **
   '';
 

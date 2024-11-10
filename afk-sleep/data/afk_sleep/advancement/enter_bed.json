@@ -5,6 +5,6 @@
     }
   },
   "rewards": {
-    "function": "afk_sleep:calculate"
+    "function": "afk_sleep:enter_bed"
   }
 }
