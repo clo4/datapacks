@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 8,
     "description": "Allows sleeping when players are AFK",
-    "supported_formats": [8, 48]
+    "supported_formats": [8, 57]
   }
 }

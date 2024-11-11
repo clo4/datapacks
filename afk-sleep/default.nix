@@ -1,7 +1,7 @@
-{buildDataPack}:
+{ buildDataPack }:
 buildDataPack {
   name = "afk-sleep";
-  version = "1.2.1";
+  version = "1.3.0";
 
   src = ./.;
 
@@ -15,5 +15,5 @@ buildDataPack {
     touch **
   '';
 
-  include = ["LICENSE"];
+  include = [ "LICENSE" ];
 }
