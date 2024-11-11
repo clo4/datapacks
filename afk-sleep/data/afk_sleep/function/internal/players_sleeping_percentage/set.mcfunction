@@ -1,3 +1,3 @@
 tellraw @a[tag=afk_sleep.log.debug] ["",{"text":"afk_sleep ","color":"blue"},{"text":"DEBUG ","color":"dark_purple"},{"text":"Setting playersSleepingPercentage"}]
-execute if score .dataVersion afk_sleep.dummy matches 3567.. run function afk_sleep:internal/players_sleeping_percentage/set_with_macro
-execute unless score .dataVersion afk_sleep.dummy matches 3567.. run function afk_sleep:internal/players_sleeping_percentage/set_no_macro
+execute store result storage afk_sleep:set_percentage_args percent int 1 run scoreboard players get .playersSleepingPercentage afk_sleep.dummy
+function afk_sleep:internal/players_sleeping_percentage/_macro with storage afk_sleep:set_percentage_args

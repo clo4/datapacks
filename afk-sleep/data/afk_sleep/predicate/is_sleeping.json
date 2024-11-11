@@ -2,15 +2,6 @@
     "condition": "entity_properties",
     "entity": "this",
     "predicate": {
-        "player": {
-            "stats": [
-                {
-                    "type": "custom",
-                    "stat": "time_since_rest",
-                    "value": 0
-                }
-            ]
-        },
         "type_specific": {
             "type": "player",
             "stats": [
