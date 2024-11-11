@@ -1,4 +1,4 @@
-tellraw @a[tag=log.debug] ["",{"text":"afk_sleep ","color":"blue"},{"text":"DEBUG ","color":"dark_purple"},{"text":"Data version too old, falling back to set_percent_no_macro"}]
+tellraw @a[tag=log.debug] ["",{"text":"afk_sleep ","color":"blue"},{"text":"DEBUG ","color":"dark_purple"},{"text":"Setting without macro"}]
 execute if score .playersSleepingPercentage afk_sleep.dummy matches ..0 run gamerule playersSleepingPercentage 0
 execute if score .playersSleepingPercentage afk_sleep.dummy matches 1 run gamerule playersSleepingPercentage 1
 execute if score .playersSleepingPercentage afk_sleep.dummy matches 2 run gamerule playersSleepingPercentage 2
