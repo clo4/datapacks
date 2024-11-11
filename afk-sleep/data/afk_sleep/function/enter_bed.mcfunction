@@ -5,6 +5,9 @@ tellraw @a[tag=log.debug] ["",{"text":"afk_sleep ","color":"blue"},{"text":"DEBU
 
 advancement revoke @s only afk_sleep:enter_bed
 
+execute store result score .gameruleValue afk_sleep.dummy run gamerule playersSleepingPercentage
+execute unless score .gameruleValue afk_sleep.dummy = .playersSleepingPercentage afk_sleep.dummy run scoreboard players operation .relativePercentage afk_sleep.dummy = .gameruleValue afk_sleep.dummy
+
 # The score was reset on load, so the first player to sleep will always set the data version.
 execute unless score .dataVersion afk_sleep.dummy matches 0.. store result score .dataVersion afk_sleep.dummy run data get entity @s DataVersion
 
