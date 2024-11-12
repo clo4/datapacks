@@ -1,4 +1,4 @@
-{buildDataPack}:
+{ buildDataPack }:
 buildDataPack {
   name = "pause-day-cycle";
   version = "1.1.1";
@@ -15,5 +15,5 @@ buildDataPack {
     touch **
   '';
 
-  include = ["LICENSE"];
+  include = [ "LICENSE" ];
 }

@@ -26,7 +26,7 @@
           };
         in
         {
-          inherit (builder) buildDataPack joinDataPacks;
+          inherit (builder) buildDataPack joinDataPacks build-and-copy;
         };
       templates = {
         default = {
@@ -53,7 +53,7 @@
             pkgs.zip
             pkgs.unzip
             pkgs.fish
-            self.packages.${system}.build-and-copy
+            pkgs.build-and-copy
             formatter
           ];
         };
@@ -62,7 +62,7 @@
           default = build-and-copy;
           build-and-copy = {
             type = "app";
-            program = "${self.packages.${system}.build-and-copy}/bin/build-and-copy";
+            program = "${pkgs.build-and-copy}/bin/build-and-copy";
           };
         };
 
@@ -85,11 +85,6 @@
             no-free-deaths
           ];
           default = all;
-
-          build-and-copy = pkgs.writeScriptBin "build-and-copy" ''
-            #!${pkgs.fish}/bin/fish
-            ${builtins.readFile ./nix/build-and-copy.fish}
-          '';
         };
       }
     ));

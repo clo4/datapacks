@@ -1,4 +1,4 @@
-{buildDataPack}:
+{ buildDataPack }:
 buildDataPack {
   name = "afk-message";
   version = "1.0.1";
@@ -15,5 +15,5 @@ buildDataPack {
     touch **
   '';
 
-  include = ["LICENSE"];
+  include = [ "LICENSE" ];
 }
