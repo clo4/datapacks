@@ -7,12 +7,12 @@ execute as @a run function afk:update_position
 execute as @a if score @s afk.rot_current = @s afk.rot_previous run scoreboard players set @s afk.is_in_same_pos 1
 
 # increment if the player hasn't moved, or set to 0 if they have
-execute as @a[scores={afk.is_in_same_pos=1}] run scoreboard players add @s afk.loops_not_moved 1
-execute as @a[scores={afk.is_in_same_pos=0}] run scoreboard players set @s afk.loops_not_moved 0
+execute as @a[scores={afk.is_in_same_pos=1}] run scoreboard players add @s afk.seconds_not_moved 5
+execute as @a[scores={afk.is_in_same_pos=0}] run scoreboard players set @s afk.seconds_not_moved 0
 
 # reset for the next loop so no players already have their score set to 1
 scoreboard players set @a afk.is_in_same_pos 0
 
-# Magic numbers: 180s delay / 5s intervals = 36 loops
-execute as @a[scores={afk.loops_not_moved=36..},tag=!afk] at @s run function afk:tag/away
-execute as @a[scores={afk.loops_not_moved=..35},tag=afk] at @s run function afk:tag/back
+# 3600 ticks = 180 seconds = 3 minutes
+execute as @a[scores={afk.seconds_not_moved=180..},tag=!afk] at @s run function afk:tag/away
+execute as @a[scores={afk.seconds_not_moved=..179},tag=afk] at @s run function afk:tag/back
