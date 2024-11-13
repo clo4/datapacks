@@ -1,7 +1,7 @@
 {
   "pack": {
-    "pack_format": 48,
+    "pack_format": 57,
     "description": "My data pack (very cool)",
-    "supported_formats": [48, 48]
+    "supported_formats": [57, 57]
   }
 }
