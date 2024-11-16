@@ -9,12 +9,6 @@ scoreboard objectives add afk.settings dummy
 # it takes for a player to become AFK. Currently, 
 execute unless score .seconds_inactive afk.settings matches 1.. run scoreboard players set .seconds_inactive afk.settings 180
 
-scoreboard objectives add afk.rot_previous dummy
-scoreboard objectives add afk.rot_current dummy
-
-scoreboard objectives add afk.is_in_same_pos dummy
 scoreboard objectives add afk.seconds_inactive dummy
 
-execute as @a run function afk:update_position
-
-schedule function afk:loop 5s replace
+schedule function afk:loop 1s replace
