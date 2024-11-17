@@ -1,1 +1,1 @@
-scoreboard players add @s afk.seconds_inactive 1
+scoreboard players add @s afk.ticks_inactive 20
