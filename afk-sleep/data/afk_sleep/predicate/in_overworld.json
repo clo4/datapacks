@@ -1,9 +1,9 @@
 {
-    "condition": "entity_properties",
-    "entity": "this",
-    "predicate": {
-        "location": {
-            "dimension": "minecraft:overworld"
-        }
+  "condition": "entity_properties",
+  "entity": "this",
+  "predicate": {
+    "location": {
+      "dimension": "minecraft:overworld"
     }
+  }
 }

@@ -1,9 +1,7 @@
 schedule clear afk:loop
 
-scoreboard objectives remove afk.rot_previous
-scoreboard objectives remove afk.rot_current
+scoreboard objectives remove afk
+scoreboard objectives remove afk.settings
+scoreboard objectives remove afk.ticks
 
-scoreboard objectives remove afk.is_in_same_pos
-scoreboard objectives remove afk.loops_not_moved
-
-execute as @a[tag=afk] run tag @s remove afk
+tag @a[tag=afk] remove afk

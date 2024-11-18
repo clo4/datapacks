@@ -1,4 +1,4 @@
-{buildDataPack}:
+{ buildDataPack }:
 buildDataPack {
   name = "afk-dim-names";
   version = "1.1.0";
@@ -15,5 +15,5 @@ buildDataPack {
     touch **
   '';
 
-  include = ["LICENSE"];
+  include = [ "LICENSE" ];
 }

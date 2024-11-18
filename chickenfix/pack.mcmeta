@@ -1,7 +1,7 @@
 {
   "pack": {
     "pack_format": 8,
-    "supported_formats": [8, 48],
+    "supported_formats": [8, 57],
     "description": "Quick and dirty fix for chickens in 1x1 spaces suffocating in walls when growing up"
   }
 }

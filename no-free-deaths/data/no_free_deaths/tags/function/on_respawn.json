@@ -1,6 +1,6 @@
 {
-    "values": [
-        "no_free_deaths:mechanic/respawn_hunger_penalty/on_respawn",
-        "no_free_deaths:mechanic/respawn_health_penalty/on_respawn"
-    ]
+  "values": [
+    "no_free_deaths:mechanic/respawn_hunger_penalty/on_respawn",
+    "no_free_deaths:mechanic/respawn_health_penalty/on_respawn"
+  ]
 }

@@ -1,4 +1,4 @@
-{buildDataPack}:
+{ buildDataPack }:
 buildDataPack {
   name = "first-data-pack";
   version = "0.1.0";
@@ -10,5 +10,5 @@ buildDataPack {
   '';
 
   # Remove this if you don't need to include any more files.
-  include = ["LICENSE"];
+  include = [ "LICENSE" ];
 }

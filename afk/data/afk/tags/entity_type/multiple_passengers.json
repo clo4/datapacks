@@ -1,0 +1,10 @@
+{
+  "values": [
+    {
+      "id": "#c:boats",
+      "required": false
+    },
+    "#minecraft:boat",
+    "minecraft:camel"
+  ]
+}

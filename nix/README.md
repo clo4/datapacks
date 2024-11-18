@@ -110,6 +110,54 @@ multiple data packs and produce a single output containing all of them and all
 their sources. There is an example usage of this
 [in the `monorepo` template](./templates/monorepo/flake.nix).
 
+## `build-and-copy`
+
+There is a utility script included that makes the build-and-copy cycle
+significantly faster. Naturally, it is named `build-and-copy`. This is added to
+`pkgs` by the overlay.
+
+This script requires the `DATAPACK_DIR` environment variable to be set to a
+directory. This directory will be used to copy the datapacks to once built, so
+it's intended to be a Minecraft world's `datapacks` folder. You can persist this
+using a `.env` file, and use your preferred environment manager to activate it
+(e.g. [direnv](https://direnv.net/)).
+
+As arguments, you provide the name of an output package from your flake, **not**
+the name of a directory in your working directory. While this might be the same
+name, it's **extremely** important to remember that you are telling it to build
+a flake output, not a directory.
+
+### Usage
+
+```nix
+{
+  outputs = {
+    nixpkgs,
+    flake-utils,
+    datapacks,
+    ...
+  }:
+    flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system}.extend datapacks.overlays.default;
+    in {
+      #
+      # 📍 Creates a dev shell with the build-and-copy package available in it.
+      #
+      devShells.default = pkgs.mkShellNoCC {
+        packages = [
+          pkgs.build-and-copy
+        ];
+      };
+    });
+}
+```
+
+```
+$ nix develop
+$ export DATAPACK_DIR=...
+$ build-and-copy some-output-from-my-flake
+```
+
 ## Pack formats
 
 This flake has a mapping from pack format to game version, provided by its
