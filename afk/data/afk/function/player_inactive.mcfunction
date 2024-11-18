@@ -1,1 +1,1 @@
-scoreboard players add @s afk.ticks_inactive 10
+scoreboard players add @s afk.ticks 10
