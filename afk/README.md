@@ -19,6 +19,28 @@ aren't specatating.
 execute if entity @s[gamemode=!spectator] run kick @s AFK
 ```
 
+## Details
+
+Activity detection uses two methods:
+
+- **Checking what inputs the player is sending**
+  - Forward, backward, left, right, and jump
+  - Sneak and sprint cannot be used to check since they can be toggled
+- **Checking if the player is both riding a boat and the boat is moving**
+  - Boat drivers send inputs, but passengers typically don't, so this check essentially ties the passenger's "activity" to the driver of the boat.
+  - Boats do not move without player input.
+
+More entities could be added to the predicate in the future if necessary.
+
+
+### Alternative ways to implement this (and why they're bad)
+
+Head rotation is the most accurate way to detect activity, but at the time of writing (1.21.3) it is not possible to do this without checking player NBT, and is still not a flawless method. To use head rotation, the loop must be slower and less responsive to inputs, as NBT is much more expensive to check since the game must serialize its state for every player, as opposed to using the existing in-memory data structures.
+
+Other data packs that do this sometimes use X/Y/Z location, which is both expensive (3 NBT queries, so 3 separate serializations) and inaccurate as the location can be changed due to external factors (creeper explosions, water streams).
+
+Another common alternative is to use the statistic "`minecraft.custom:minecraft.<action>_one_cm`" scoreboards, but this is also flawed: `walk_one_cm` will increase due to knockback as a player slides on the ground, and the water ones will increment without any input if in water.
+
 ## API docs for add-ons
 
 The public API of this data pack is stable. The statements below are the guarantees implied by the current version of the data pack, with the normal backwards compatibility guarantees of semantic versioning.

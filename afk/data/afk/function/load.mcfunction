@@ -12,4 +12,4 @@ execute unless score .ticks_inactive afk.settings matches 1.. run scoreboard pla
 
 scoreboard objectives add afk.ticks_inactive dummy
 
-schedule function afk:loop 1s replace
+function afk:loop
