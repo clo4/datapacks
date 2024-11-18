@@ -71,19 +71,17 @@ for all players.
 
 Players are marked as AFK (`afk`) after 3 minutes of without moving the mouse.
 
-The base **afk** datapack implements the AFK detection behavior, acting as a
-library for other datapacks. Players are treated as AFK after not touching the
-mouse for between 180 and 185 seconds (about 3 minutes).
+The base **afk** data pack implements the AFK detection behavior, actin as a
+library for other data packs. Players are treated as AFK after not sending a
+directional input for more than 3 minutes (180 seconds, 3600 game ticks).
 
 This datapack also gives players the `afk` tag when they become AFK, and removes
 it when they return. This allows you to detect AFK players without having to
 install any other datapacks, making it very easy to integrate with.
 
-#### Documentation
-
-Information on how to integrate with Detect AFK Players is in
-[afk/README.md](./afk/README.md). There are example datapacks below, which also
-contain examples of the functionality you can build.
+There is a README included in the pack and viewable in the [afk](afk) directory
+with further instructions for configuration, buildng add-on packs, and
+implementation details.
 
 ### AFK Sleep
 
