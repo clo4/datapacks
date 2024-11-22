@@ -1,11 +1,19 @@
 # Documentation
 
-You can use the AFK functionality by adding functions to the `#afk:away` and
-`#afk:back` function tags. Functions in both tags are called as the player at
-the player's position.
+Activity detection uses the player's head rotation to determine activity. If the
+horizontal angle of the head changes, it is counted as activity.
 
-The example below is a very simple datapack that kicks AFK players if they
-aren't specatating.
+## Overview
+
+By default, if the head rotation stays the same for **3600** ticks, players are
+tagged with `afk`, then the `#afk:away` function tag is executed. When the
+player next rotates their head, the `#afk:back` tag is executed _before_ the
+number of ticks the player has been inactive for is cleared.
+
+The API documentation in the next section contains further information.
+
+Below is a very simple datapack that kicks AFK players if they aren't
+spectators.
 
 **kick-afk-players/data/afk/tags/functions/away.json**
 
@@ -19,23 +27,19 @@ aren't specatating.
 execute if entity @s[gamemode=!spectator] run kick @s AFK
 ```
 
-## Details
-
-Activity detection uses the player's head rotation to determine their activity.
-This uses a quaternary search to determine the angle to a 5.625deg accuracy, which
-is less accurate than using NBT, but is more performant.
-
 ## API docs for add-ons
 
-The public API of this data pack is stable. The statements below are the
-guarantees implied by the current version of the data pack, with the normal
-backwards compatibility guarantees of semantic versioning.
+The public API of this data pack is stable, and intentionally quite small. The
+statements below are the guarantees implied by the current version of the data
+pack, with the normal backwards compatibility guarantees of semantic versioning:
+minor versions may introduce new features, but will not introduce breaking
+changes.
 
 ---
 
 ### Scoreboard tags
 
-#### `afk`
+#### 🏷️ `afk`
 
 This tag, when applied to players, indicates that said player is "away".
 
@@ -50,7 +54,25 @@ in the same output state).
 
 ---
 
-### Scoreboards
+### Scoreboard objectives
+
+#### `afk`
+
+Trigger scoreboard that allows players to manually become AFK, if enabled by a server operator.
+
+To enable a player, use the `scoreboard players enable` command:
+
+```mcfunction
+/scoreboard players enable @s afk
+```
+
+The scoreboard is then used with the trigger command:
+
+```mcfunction
+/trigger afk
+```
+
+This is not enabled for any players by default because it has the potential for abuse, such as spamming chat messages with **AFK Message** or granting invincibility with **AFK Immunity**
 
 #### `afk.settings`
 
@@ -59,10 +81,12 @@ Any configuration for this datapack. New values may be introduced in the future.
 This scoreboard is mutable but should not be used to store any external state.
 Addons should maintain their own settings.
 
-- **Known keys**
-  - `.ticks`
-    - The number of ticks it takes for a player to be counted as AFK.
-    - This is set to **3600** by default.
+- **`.ticks`**
+  - The number of ticks of inactivity it takes for a player to be counted as
+    AFK.
+  - This is set to **3600** by default, which is long enough to pee, but not
+    long enough to poop.
+  - `/scoreboard players set .ticks afk.settings NUMBER_OF_TICKS`
 
 #### `afk.ticks`
 
