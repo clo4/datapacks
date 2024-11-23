@@ -58,7 +58,8 @@ in the same output state).
 
 #### `afk`
 
-Trigger scoreboard that allows players to manually become AFK, if enabled by a server operator.
+Trigger scoreboard that allows players to manually become AFK, if enabled by a
+server operator.
 
 To enable a player, use the `scoreboard players enable` command:
 
@@ -72,7 +73,9 @@ The scoreboard is then used with the trigger command:
 /trigger afk
 ```
 
-This is not enabled for any players by default because it has the potential for abuse, such as spamming chat messages with **AFK Message** or granting invincibility with **AFK Immunity**
+This is not enabled for any players by default because it has the potential for
+abuse, such as spamming chat messages with **AFK Message** or granting
+invincibility with **AFK Immunity**
 
 #### `afk.settings`
 
