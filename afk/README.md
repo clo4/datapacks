@@ -67,12 +67,12 @@ Any configuration for this datapack. New values may be introduced in the future.
 This scoreboard is mutable but should not be used to store any external state.
 Addons should maintain their own settings.
 
-- **`.ticks`**
+- **`.threshold`**
   - The number of ticks of inactivity it takes for a player to be counted as
     AFK.
-  - This is set to **3600** by default, which is long enough to pee, but not
-    long enough to poop.
-  - `/scoreboard players set .ticks afk.settings NUMBER_OF_TICKS`
+  - This is set to **3600** by default: long enough to pee, but not long enough
+    to poop.
+  - `/scoreboard players set .threshold afk.settings NUMBER_OF_TICKS`
 
 #### `afk.ticks`
 

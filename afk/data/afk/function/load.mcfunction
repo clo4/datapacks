@@ -12,9 +12,9 @@ scoreboard objectives add afk.left_game minecraft.custom:minecraft.leave_game
 scoreboard objectives add afk.rotation dummy
 scoreboard objectives add afk.rotation_prev dummy
 
-# .ticks is a user-configurable setting that controls how many seconds of inactivity
+# .threshold is a user-configurable setting that controls how many seconds of inactivity
 # it takes for a player to become AFK. 3600 ticks is 180 seconds - this is a very intentional
 # default. It's long enough to yellow without going AFK, but not long enough to brown :^)
-execute unless score .ticks afk.settings matches 1.. run scoreboard players set .ticks afk.settings 3600
+execute unless score .threshold afk.settings matches 1.. run scoreboard players set .threshold afk.settings 3600
 
 function afk:loop
