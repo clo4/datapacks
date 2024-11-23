@@ -9,7 +9,7 @@ scoreboard objectives add afk.rotation_prev dummy
 scoreboard objectives add afk.settings dummy
 
 # This might eventually be exposed as part of the public API, but it is not for now.
-scoreboard objectives add afk.leave_game minecraft.custom:minecraft.leave_game
+scoreboard objectives add afk.left_while_away minecraft.custom:minecraft.leave_game
 
 # .ticks is a user-configurable setting that controls how many seconds of inactivity
 # it takes for a player to become AFK. 3600 ticks is 180 seconds - this is a very intentional
