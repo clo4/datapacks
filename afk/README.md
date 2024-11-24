@@ -116,7 +116,7 @@ scoreboard players operation @s minute_seconds_inactive /= #second constant
 #### `afk.left_game`
 
 Value will be at least 1 if the player has re-joined the game after leaving
-while AFK.
+while AFK, or 0 if the player has not left while AFK.
 
 This allows you to check for uninterrupted AFK sessions and change the execution
 based on that. As an example, afk-message does not send a message to announce a

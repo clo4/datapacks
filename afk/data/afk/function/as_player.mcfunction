@@ -1,6 +1,6 @@
 function afk:update_rotation
 
-execute if entity @s[scores={afk=1..}] run function afk:trigger
+execute if score @s afk matches 1.. run function afk:trigger
 
 # Joining the game always counts as activity, so the ticks inactive should be reset.
 # There isn't a way to detect joining directly, but you can detect leaving, and players
