@@ -116,22 +116,22 @@ scoreboard players operation @s minute_seconds_inactive /= #second constant
 #### `afk.left_game`
 
 Value will be at least 1 if the player has re-joined the game after leaving
-while AFK. If the player did not leave the game while AFK, they will not have a
-value for this objective.
+while AFK.
 
 This allows you to check for uninterrupted AFK sessions and change the execution
 based on that. As an example, afk-message does not send a message to announce a
 player returning if the player has just joined the game.
 
-To use this value, match on `1..`. To check if the player did _not_ leave the
-game, invert the statement by using `execute unless`, as players are guaranteed
-to have a minimum value of 1.
+The player will have a value of the number of times they have left since
+becoming AFK. The player is guaranteed to have a value for this objective. To
+execute if the player has left, always match on `1..` to avoid possible
+edge-cases where the player joins and immediately leaves.
 
 Example: A function registered to `#afk:back`
 
 ```mcfunction
 execute if score @s afk.left_game matches 1.. run say Last session ended while AFK
-execute unless score @s afk.left_game matches 1.. run say Returned in the same session
+execute if score @s afk.left_game matches 0 run say Returned in the same session
 ```
 
 ---
@@ -155,7 +155,7 @@ in the same output state).
 
 ### Function tags
 
-#### `afk:away`
+#### `#afk:away`
 
 - Called as the player that has gone AFK.
 - This is guaranteed to happen after the player has been tagged as `afk` and
@@ -163,10 +163,10 @@ in the same output state).
 - This is not guaranteed to be executed only once per player before `afk:back`
   is executed. Functions registered to this function tag should be idempotent.
 
-#### `afk:back`
+#### `#afk:back`
 
 - Called as the player that has stopped being AFK.
-- This is guaranteed to happen after the `afk` tag has been removed and their
-  `afk.ticks` has been set to 0.
+- This is guaranteed to happen after the `afk` tag has been removed and before
+  their `afk.ticks` has been set to 0.
 - This is not guaranteed to be executed only once per player after `afk:away` is
   executed. Functions registered to this function tag should be idempotent.
