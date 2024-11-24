@@ -1,1 +1,1 @@
-execute if entity @s[gamemode=!spectator] unless score @s afk.left_game matches 1.. run function afk_message:message_style/select_back
+execute if entity @s[gamemode=!spectator,scores={afk.left_game=0}] run function afk_message:message_style/select_back
