@@ -30,7 +30,8 @@ execute if entity @s[gamemode=!spectator] run kick @s AFK
 
 ## Public API Documentation
 
-The public API of this data pack is stable, and intentionally quite small. The
+The public API of this data pack is stable, and intentionally quite small,
+consisting of 2 function tags, 3 scoreboards objectives, and 1 entity tag. The
 statements below are the guarantees implied by the current version of the data
 pack, with the normal backwards compatibility guarantees of semantic versioning:
 minor versions may introduce new features, but will not introduce breaking
@@ -38,9 +39,43 @@ changes.
 
 ---
 
+### Function tags
+
+#### `#afk:away`
+
+**Added in version 1.0**
+
+This function tag is executed as the player that has gone AFK when they receive
+their `afk` tag. This is guaranteed to be called after the player has been
+tagged as `afk` and after their `afk.ticks` value has reached the threshold.
+
+This is not guaranteed to be executed only once per player before `#afk:back` is
+executed, as if the `afk` tag is removed by another player without altering the
+`afk.ticks` value, they will be tagged again and this function tag will be
+called. As such, functions registered to this tag should be idempotent - that
+is, multiple executions should not stack side effects.
+
+#### `#afk:back`
+
+**Added in version 1.0**
+
+This funcitoen tag is executed as the player that has stopped being AFK when
+their `afk` tag is removed. This is guaranteed to be called after the `afk` tag
+has been removed, and before the player's `afk.ticks` value has been reset to 0.
+
+If side effects are applied from `#afk:away`, this function tag allows you to
+revert them as it is guaranteed to be called for every player that goes AFK. It
+is not guaranteed to be executed during the same "play session", i.e. the player
+may have logged out and logged back in. (To detect this, see the scoreboard
+objective `afk.left_game`).
+
+---
+
 ### Scoreboard objectives
 
 #### `afk`
+
+**Added in version 1.2**
 
 Trigger scoreboard that allows players to manually become AFK, if enabled by a
 server operator.
@@ -62,6 +97,8 @@ abuse, such as spamming chat messages with AFK Message.
 
 #### `afk.settings`
 
+**Added in version 1.2**
+
 Any configuration for this datapack. New values may be introduced in the future.
 
 This scoreboard is mutable but should not be used to store any external state.
@@ -76,8 +113,11 @@ Addons should maintain their own settings.
 
 #### `afk.ticks`
 
+**Added in version 1.2**
+
 The number of ticks that a player has been detected as inactive. The value is
-not guaranteed to increment by a stable amount between updates.
+not guaranteed to increment by a stable amount between different data pack
+versions.
 
 <details>
 <summary>Example converting ticks to h:m:s</summary>
@@ -115,17 +155,24 @@ scoreboard players operation @s minute_seconds_inactive /= #second constant
 
 #### `afk.left_game`
 
-Value will be at least 1 if the player has re-joined the game after leaving
-while AFK, or 0 if the player has not left while AFK.
+**Added in version 1.2**
+
+When a function has been invoked by either `#afk:away` or `#afk:back`, the
+player will have a value of 0 if they have not left while AFK or greater than 0
+if they have. If AFK, the player is guaranteed to have a value for this
+objective.
+
+If the player being checked is **not** tagged as AFK, they may have any value
+for this objective. Their value should not be used for anything if the player is
+not tagged as `afk`.
 
 This allows you to check for uninterrupted AFK sessions and change the execution
 based on that. As an example, afk-message does not send a message to announce a
 player returning if the player has just joined the game.
 
 The player will have a value of the number of times they have left since
-becoming AFK. The player is guaranteed to have a value for this objective. To
-execute if the player has left, always match on `1..` to avoid possible
-edge-cases where the player joins and immediately leaves.
+becoming AFK. To execute if the player has left, always match on `1..` to avoid
+possible edge-cases where the player joins and immediately leaves.
 
 Example: A function registered to `#afk:back`
 
@@ -138,7 +185,9 @@ execute if score @s afk.left_game matches 0 run say Returned in the same session
 
 ### Scoreboard tags
 
-#### 🏷️ `afk`
+#### ️`afk`
+
+**Added in version 1.0**
 
 This tag, when applied to players, indicates that said player is "away".
 
@@ -150,23 +199,3 @@ as the player it is applied to. As players may end up removing this tag from
 another player manually, functions registered to `afk:away` and `afk:back`
 should be idempotent (state changes due to being called repeatedly should result
 in the same output state).
-
----
-
-### Function tags
-
-#### `#afk:away`
-
-- Called as the player that has gone AFK.
-- This is guaranteed to happen after the player has been tagged as `afk` and
-  their `afk.ticks` has reached the configured threshold.
-- This is not guaranteed to be executed only once per player before `afk:back`
-  is executed. Functions registered to this function tag should be idempotent.
-
-#### `#afk:back`
-
-- Called as the player that has stopped being AFK.
-- This is guaranteed to happen after the `afk` tag has been removed and before
-  their `afk.ticks` has been set to 0.
-- This is not guaranteed to be executed only once per player after `afk:away` is
-  executed. Functions registered to this function tag should be idempotent.
