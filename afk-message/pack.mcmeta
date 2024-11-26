@@ -1,7 +1,7 @@
 {
   "pack": {
-    "pack_format": 8,
+    "pack_format": 26,
     "description": "Announces when players go AFK or come back",
-    "supported_formats": [8, 57]
+    "supported_formats": [26, 57]
   }
 }
