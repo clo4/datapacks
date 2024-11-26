@@ -1,0 +1,1 @@
+scoreboard objectives remove afk_message.settings

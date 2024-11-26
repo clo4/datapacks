@@ -71,7 +71,7 @@ for all players.
 
 Players are marked as AFK (`afk`) after 3 minutes of without moving the mouse.
 
-The base **afk** data pack implements the AFK detection behavior, actin as a
+The base **afk** data pack implements the AFK detection behavior, acting as a
 library for other data packs. Players are treated as AFK after not sending a
 directional input for more than 3 minutes (180 seconds, 3600 game ticks).
 

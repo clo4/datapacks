@@ -1,5 +1,5 @@
 scoreboard players set @s afk 0
-execute if score @s afk.ticks < .ticks afk.settings run scoreboard players operation @s afk.ticks = .ticks afk.settings
+execute if score @s afk.ticks < .threshold afk.settings run scoreboard players operation @s afk.ticks = .threshold afk.settings
 
 # By guaranteeing that the current and previous rotations are the same, and with the ticks set to the threshold,
 # this will trigger the condition to mark the player as AFK if they currently aren't.

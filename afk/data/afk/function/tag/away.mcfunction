@@ -1,2 +1,3 @@
 tag @s add afk
-execute as @s at @s run function #afk:away
+scoreboard players set @s afk.left_game 0
+function #afk:away

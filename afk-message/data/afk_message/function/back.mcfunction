@@ -1,1 +1,1 @@
-execute if entity @s[gamemode=!spectator] unless score @s afk_message.leave_game matches 1.. run tellraw @a [{ "text": "[AFK] ", "color": "gray", "hoverEvent": { "action": "show_text", "contents": "Player has moved their mouse again"}}, { "selector": "@s", "color": "white" }, { "text": " is back!", "color": "white" }]
+execute if entity @s[gamemode=!spectator,scores={afk.left_game=0}] run function afk_message:message_style/select_back
