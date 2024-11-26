@@ -71,6 +71,7 @@
           afk-sleep = pkgs.callPackage ./afk-sleep { };
           afk-message = pkgs.callPackage ./afk-message { };
           afk-dim-names = pkgs.callPackage ./afk-dim-names { };
+          afk-kick = pkgs.callPackage ./afk-kick { };
           pause-day-cycle = pkgs.callPackage ./pause-day-cycle { };
           chickenfix = pkgs.callPackage ./chickenfix { };
           no-free-deaths = pkgs.callPackage ./no-free-deaths { };
