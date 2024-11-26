@@ -1,0 +1,7 @@
+{
+    "function": "minecraft:set_enchantments",
+    "enchantments": {
+        "binding_curse": -1
+    },
+    "add": true
+}
