@@ -82,6 +82,8 @@
             afk-sleep
             afk-message
             afk-dim-names
+            afk-kick
+            afk-immunity
             pause-day-cycle
             chickenfix
             no-free-deaths
