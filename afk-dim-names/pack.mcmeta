@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 8,
     "description": "Displays AFK players with a darker name tag",
-    "supported_formats": [8, 57]
+    "supported_formats": [8, 61]
   }
 }
