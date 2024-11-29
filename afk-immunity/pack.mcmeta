@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 8,
     "description": "Players are unable to die while AFK",
-    "supported_formats": [8, 57]
+    "supported_formats": [8, 61]
   }
 }

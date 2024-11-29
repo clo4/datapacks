@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 26,
     "description": "Kicks inactive players after a specified amount of time",
-    "supported_formats": [26, 57]
+    "supported_formats": [26, 61]
   }
 }
