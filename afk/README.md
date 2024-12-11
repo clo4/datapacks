@@ -59,7 +59,7 @@ is, multiple executions should not stack side effects.
 
 **Added in version 1.0**
 
-This funcitoen tag is executed as the player that has stopped being AFK when
+This function tag is executed as the player that has stopped being AFK when
 their `afk` tag is removed. This is guaranteed to be called after the `afk` tag
 has been removed, and before the player's `afk.ticks` value has been reset to 0.
 
