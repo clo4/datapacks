@@ -1,7 +1,7 @@
 { buildDataPack }:
 buildDataPack {
   name = "no-free-deaths";
-  version = "1.1.0";
+  version = "1.1.1";
 
   src = ./.;
 
