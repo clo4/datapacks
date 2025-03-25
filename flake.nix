@@ -76,6 +76,7 @@
           pause-day-cycle = pkgs.callPackage ./pause-day-cycle { };
           chickenfix = pkgs.callPackage ./chickenfix { };
           no-free-deaths = pkgs.callPackage ./no-free-deaths { };
+          no-sprint = pkgs.callPackage ./no-sprint { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
             afk
@@ -87,6 +88,7 @@
             pause-day-cycle
             chickenfix
             no-free-deaths
+            no-sprint
           ];
           default = all;
         };
