@@ -1,1 +1,1 @@
-execute as @a[tag=!no_sprint.blind,gamemode=!creative,gamemode=!spectator] if predicate no_sprint:is_sprinting run function no_sprint:player_sprinting
+execute as @a[gamemode=!creative,gamemode=!spectator,tag=!no_sprint.can_sprint] run function no_sprint:detect_sprinting
