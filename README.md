@@ -18,6 +18,12 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [AFK Message](#afk-message)
     - [AFK Dim Names](#afk-dim-names)
     - [No Free Deaths](#no-free-deaths)
+    - [Unreleased Data Packs](#unreleased-data-packs)
+      - [No Sprint](#no-sprint)
+      - [No Sprint Swimming](#no-sprint-swimming)
+      - [No Sleep](#no-sleep)
+      - [AFK Immunity](#afk-immunity)
+      - [AFK Kick](#afk-kick)
   - [Nix Build System](#nix-build-system)
   - [Contributing](#contributing)
     - [Philosophy](#philosophy)
@@ -172,6 +178,16 @@ consistent and least bad of the methods.
 
 This isn't released yet because I haven't playtested it. Don't know if this is
 fun yet.
+
+#### No Sprint Swimming
+
+Disables swimming (sprint-swimming). When players try to swim fast, they are
+kicked out of fast swimming back to normal floating.
+
+There isn't a way to control swimming speed the same way there is with ground
+movement speed, so I had to use another method to disable the fast movement.
+
+This isn't released for the same reason as No Sprint.
 
 #### No Sleep
 

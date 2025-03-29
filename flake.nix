@@ -77,6 +77,7 @@
           chickenfix = pkgs.callPackage ./chickenfix { };
           no-free-deaths = pkgs.callPackage ./no-free-deaths { };
           no-sprint = pkgs.callPackage ./no-sprint { };
+          no-sprint-swimming = pkgs.callPackage ./no-sprint-swimming { };
           no-sleep = pkgs.callPackage ./no-sleep { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
@@ -90,6 +91,7 @@
             chickenfix
             no-free-deaths
             no-sprint
+            no-sprint-swimming
             no-sleep
           ];
           default = all;
