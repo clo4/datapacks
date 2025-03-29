@@ -79,6 +79,7 @@
           no-sprint = pkgs.callPackage ./no-sprint { };
           no-sprint-swimming = pkgs.callPackage ./no-sprint-swimming { };
           no-sleep = pkgs.callPackage ./no-sleep { };
+          expensive-boats = pkgs.callPackage ./expensive-boats { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
             afk
@@ -93,6 +94,7 @@
             no-sprint
             no-sprint-swimming
             no-sleep
+            expensive-boats
           ];
           default = all;
         };

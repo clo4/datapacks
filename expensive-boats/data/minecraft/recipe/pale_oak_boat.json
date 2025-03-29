@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "boat",
+  "key": {
+    "#": "minecraft:pale_oak_planks",
+    "x": "minecraft:netherite_ingot"
+  },
+  "pattern": [
+    "# #",
+    "###",
+    "#x#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:pale_oak_boat"
+  }
+}

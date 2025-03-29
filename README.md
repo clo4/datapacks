@@ -22,6 +22,7 @@ Keeping everything in the same repository makes it easier to build stuff fast!
       - [No Sprint](#no-sprint)
       - [No Sprint Swimming](#no-sprint-swimming)
       - [No Sleep](#no-sleep)
+      - [Expensive Boats](#expensive-boats)
       - [AFK Immunity](#afk-immunity)
       - [AFK Kick](#afk-kick)
   - [Nix Build System](#nix-build-system)
@@ -199,6 +200,24 @@ solved the membrane in a way that's fun.
 
 The best idea I've come up with is to spawn phantoms if a player drinks a potion
 of weakness and tries to use a bed.
+
+#### Expensive Boats
+
+Makes boats cost a netherite ingot.
+
+Boats allow you to move very, very fast. They allow players to cross vast
+distances easily, stay safe from all harm, and they shrink the scope of the
+world more than sprinting does.
+
+Boats have great utility, though! And especially as a late game tool, for ice
+road travel and connecting civilisations.
+
+This data pack makes them a late-game tool by disallowing their crafting until
+after the player has acquired netherite ingots.
+
+Why netherite? It's like using lead for a keel! You have to have something
+keeping the boat upright. (Let's just use our imaginations that they'd be big
+enough to justify that, instead of being more like a canoe)
 
 #### AFK Immunity
 
