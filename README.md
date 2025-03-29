@@ -158,6 +158,53 @@ verbose, but can be changed to a custom amount e.g. `90` to lose 90% of levels.
 /scoreboard players set .drop_percentage no_free_deaths.drop_xp.settings [percent]
 ```
 
+### Unreleased data packs
+
+There are data packs in this repository that I haven't released. This is a list
+of them, including the reasons they are not listed on Modrinth yet.
+
+#### No Sprint
+
+Disables sprinting. When players sprint, they become stuck in place.
+
+There are a few ways to go about this, but disabling all movement is the most
+consistent and least bad of the methods.
+
+This isn't released yet because I haven't playtested it. Don't know if this is
+fun yet.
+
+#### No Sleep
+
+Disables sleeping.
+
+When you disable sleeping, you also need to disable phantoms. When you disable
+phantoms, you need to come up with a way to get phantom membrane. I haven't
+solved the membrane in a way that's fun.
+
+The best idea I've come up with is to spawn phantoms if a player drinks a potion
+of weakness and tries to use a bed.
+
+#### AFK Immunity
+
+Disables all damage to AFK players.
+
+The goal is to also disable all armor durability too, to prevent people or
+entities from wearing down the armor. However, this presents a lot of edge
+cases. Upon returning, the player could take their armor off before moving their
+mouse, keeping their infinite durability armor. So, if you give it curse of
+binding, they can't take it off, then you remove all curse of binding
+enchantments from their armor. But, if the player already had CoB on a piece of
+armor, now they can take that off too. This means you need to detect whether
+each piece of armor already has CoB, store that in a scoreboard, and selectively
+remove it based on that value. That's more effort than it's worth for me.
+
+#### AFK Kick
+
+Kicks players after they have been AFK for a configurable period of time.
+
+This requires the function level to be set higher than I'm generally comfortable
+recommending.
+
 ## Nix Build System
 
 The build system is a reusable component built with Nix. You can use this
