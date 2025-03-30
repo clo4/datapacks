@@ -3,3 +3,4 @@ title @s actionbar {"text":"Sprinting is disabled"}
 
 attribute @s movement_speed modifier add no_sprint:no_sprint -1000 add_value
 attribute @s jump_strength modifier add no_sprint:no_jump -1000 add_value
+attribute @s entity_interaction_range modifier add no_sprint:no_reach -1000 add_value
