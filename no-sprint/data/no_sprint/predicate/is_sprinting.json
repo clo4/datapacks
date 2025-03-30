@@ -4,34 +4,15 @@
     {
       "condition": "inverted",
       "term": {
-        "condition": "any_of",
-        "terms": [
-          {
-            "condition": "entity_properties",
-            "entity": "this",
-            "predicate": {
-              "flags": {
-                "is_on_ground": false
-              },
-              "movement_affected_by": {
-                "fluid": {
-                  "fluids": "#minecraft:water"
-                }
-              }
-            }
-          },
-          {
-            "condition": "entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "fluid": {
-                  "fluids": "#minecraft:water"
-                }
-              }
+        "condition": "entity_properties",
+        "entity": "this",
+        "predicate": {
+          "location": {
+            "fluid": {
+              "fluids": "#minecraft:water"
             }
           }
-        ]
+        }
       }
     },
     {
