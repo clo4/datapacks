@@ -1,3 +1,2 @@
-tag @s remove is_swimming
-say stopped swimming
+tag @s remove no_sprint_swimming.is_swimming
 effect clear @s blindness
