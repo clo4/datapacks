@@ -1,1 +1,1 @@
-tellraw @a [{ "selector": "@s", "color": "#eeaa44" }, { "text": " is AFK" }]
+tellraw @a [{ "selector": "@s", "color": "gray" }, { "text": " is away" }]
