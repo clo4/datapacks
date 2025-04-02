@@ -43,4 +43,11 @@ execute unless items entity @s armor.chest * run item replace entity @s armor.ch
 execute unless items entity @s armor.legs * run item replace entity @s armor.legs with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:legs},item_model="minecraft:air"]
 execute unless items entity @s armor.feet * run item replace entity @s armor.feet with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:feet},item_model="minecraft:air"]
 
+attribute @s jump_strength modifier add afk_immunity:no_jump -10000 add_value
+attribute @s entity_interaction_range modifier add afk_immunity:no_interaction -10000 add_value
+attribute @s oxygen_bonus modifier add afk_immunity:no_drowning 10000 add_value
+
+# afk v1.3 does this by default but this makes it compatible with older versions
+attribute @s movement_speed modifier add afk_immunity:no_movement -10000 add_value
+
 tag @s add afk_immunity.has_been_modified
