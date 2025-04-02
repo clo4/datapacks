@@ -10,16 +10,16 @@ Keeping everything in the same repository makes it easier to build stuff fast!
 - [clo4's Minecraft datapacks](#clo4s-minecraft-datapacks)
   - [Table of Contents](#table-of-contents)
   - [Datapacks](#datapacks)
-    - [Pause Day Cycle](#pause-day-cycle)
-    - [Chickenfix](#chickenfix)
     - [Detect AFK Players](#detect-afk-players)
     - [AFK Sleep](#afk-sleep)
     - [AFK Message](#afk-message)
     - [AFK Dim Names](#afk-dim-names)
+    - [Pause Day Cycle](#pause-day-cycle)
     - [No Free Deaths](#no-free-deaths)
     - [No Sprinting](#no-sprinting)
     - [No Sprint-Swimming](#no-sprint-swimming)
     - [Expensive Boats](#expensive-boats)
+    - [Chickenfix](#chickenfix)
     - [No Sleep (unreleased)](#no-sleep-unreleased)
     - [AFK Immunity (unreleased)](#afk-immunity-unreleased)
     - [AFK Kick (unreleased)](#afk-kick-unreleased)
@@ -28,55 +28,6 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [Philosophy](#philosophy)
 
 ## Datapacks
-
-<img align="left" src="pause-day-cycle/pack.png" width="80px">
-
-### Pause Day Cycle
-
-[View and download on Modrinth](https://modrinth.com/datapack/pause-day-cycle)
-
-<br>
-
-A very lightweight datapack that disables `doDaylightCycle` when nobody is
-online or everyone online is tagged as `afk` (see #detect-afk-players). It's
-best suited for small to medium sized servers where there are large stretches of
-time that nobody will be online, or long periods where players may be AFK (eg.
-at a mob grinder overnight). This is to prevent the local difficulty and day
-count from becoming excessive and not representative of the amount of time that
-players have actually played on the server.
-
-The following gamerules are affected:
-
-- `doDaylightCycle`
-- `doWeatherCycle`
-
-The gamerule `mobSpawning` is unaffected to allow mob grinders and automatic
-farms to function with nobody present or an AFK player loading the chunk.
-
-You can hook into the pause and resume events using the `pause_day_cycle:pause`
-and `pause_day_cycle:resume` function tags, which will be called whenever the
-day cycle pauses or resumes.
-
----
-
-<img align="left" src="chickenfix/pack.png" width="80px">
-
-### Chickenfix
-
-[View and download on Modrinth](https://modrinth.com/datapack/chickenfix)
-
-<br>
-
-A simple but effective brute force fix to chickens suffocating in walls when
-they grow up in a cramped, inhumane chicken farm.
-
-It works by teleporting chickens to the center of the block they're in, on the
-tick where they grow into an adult. This prevents them from being shoved into a
-wall and suffocating. This is only done if the chicken is within five blocks of
-any entity named exactly `chickenfix`, to prevent normal (humane) chicken farms
-from being broken by the same logic that fixes the inhumane ones.
-
----
 
 <img align="left" src="afk/pack.png" width="80px">
 
@@ -152,6 +103,36 @@ becomes AFK or returns to the game.
 
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
+
+---
+
+<img align="left" src="pause-day-cycle/pack.png" width="80px">
+
+### Pause Day Cycle
+
+[View and download on Modrinth](https://modrinth.com/datapack/pause-day-cycle)
+
+<br>
+
+A very lightweight datapack that disables `doDaylightCycle` when nobody is
+online or everyone online is tagged as `afk` (see #detect-afk-players). It's
+best suited for small to medium sized servers where there are large stretches of
+time that nobody will be online, or long periods where players may be AFK (eg.
+at a mob grinder overnight). This is to prevent the local difficulty and day
+count from becoming excessive and not representative of the amount of time that
+players have actually played on the server.
+
+The following gamerules are affected:
+
+- `doDaylightCycle`
+- `doWeatherCycle`
+
+The gamerule `mobSpawning` is unaffected to allow mob grinders and automatic
+farms to function with nobody present or an AFK player loading the chunk.
+
+You can hook into the pause and resume events using the `pause_day_cycle:pause`
+and `pause_day_cycle:resume` function tags, which will be called whenever the
+day cycle pauses or resumes.
 
 ---
 
@@ -245,6 +226,36 @@ obstacle rather than an annoyance.
 Boats shrink the effective size of continents from hours of traversal,
 exploration, distraction, and fun to a few minutes of holding <kbd>w</kbd> and
 scrolling your favorite time-wasting app.
+
+---
+
+<img align="left" src="chickenfix/pack.png" width="80px">
+
+### Chickenfix
+
+[View and download on Modrinth](https://modrinth.com/datapack/chickenfix)
+
+<br>
+
+A simple but effective brute force fix to chickens suffocating in walls when
+they grow up in a cramped, inhumane chicken farm.
+
+It works by teleporting chickens to the center of the block they're in, on the
+tick where they grow into an adult. This prevents them from being shoved into a
+wall and suffocating. This is only done if the chicken is within five blocks of
+any entity named exactly `chickenfix`, to prevent normal (humane) chicken farms
+from being broken by the same logic that fixes the inhumane ones.
+
+**If you need this, you know you need it. If you don't know, you definitely
+don't need it.**
+
+**I also make no guarantees that this will actually fix your problem. It works
+for me.**
+
+This is extremely cursed. It's a bad fix for a niche problem, and as such, I
+gave it a horrible icon to deter people that do not absolutely need this fix
+from using it. I'm also not releasing it as a mod, because that would also imply
+that I want other people using it.
 
 ---
 
