@@ -1,2 +1,3 @@
-kill @e[type=armor_stand,tag=afk_sit.seat,predicate=!afk_sit:has_player_passenger]
-tag @s remove afk_sit.is_sitting
+execute if entity @s[tag=afk_sit.is_sitting] run function afk_sit:unsit
+
+execute unless entity @a[tag=afk] run schedule clear afk_sit:check_gravity

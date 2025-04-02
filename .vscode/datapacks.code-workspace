@@ -1,0 +1,17 @@
+{
+    "folders": [
+        {"path": "../afk"},
+        {"path": "../afk-dim-names"},
+        {"path": "../afk-immunity"},
+        {"path": "../afk-kick"},
+        {"path": "../afk-message"},
+        {"path": "../afk-sleep"},
+        {"path": "../afk-sit"},
+        {"path": "../chickenfix"},
+        {"path": "../no-free-deaths"},
+        {"path": "../no-sleep"},
+        {"path": "../no-sprint"},
+        {"path": "../no-sprint-swimming"},
+        {"path": "../pause-day-cycle"}
+    ]
+}
