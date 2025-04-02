@@ -13,27 +13,29 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [Pause Day Cycle](#pause-day-cycle)
     - [Chickenfix](#chickenfix)
     - [Detect AFK Players](#detect-afk-players)
-      - [Documentation](#documentation)
     - [AFK Sleep](#afk-sleep)
     - [AFK Message](#afk-message)
     - [AFK Dim Names](#afk-dim-names)
     - [No Free Deaths](#no-free-deaths)
-    - [Unreleased Data Packs](#unreleased-data-packs)
-      - [No Sprint](#no-sprint)
-      - [No Sprint Swimming](#no-sprint-swimming)
-      - [No Sleep](#no-sleep)
-      - [Expensive Boats](#expensive-boats)
-      - [AFK Immunity](#afk-immunity)
-      - [AFK Kick](#afk-kick)
+    - [No Sprinting](#no-sprinting)
+    - [No Sprint-Swimming](#no-sprint-swimming)
+    - [Expensive Boats](#expensive-boats)
+    - [No Sleep (unreleased)](#no-sleep-unreleased)
+    - [AFK Immunity (unreleased)](#afk-immunity-unreleased)
+    - [AFK Kick (unreleased)](#afk-kick-unreleased)
   - [Nix Build System](#nix-build-system)
   - [Contributing](#contributing)
     - [Philosophy](#philosophy)
 
 ## Datapacks
 
+<img align="left" src="pause-day-cycle/pack.png" width="80px">
+
 ### Pause Day Cycle
 
 [View and download on Modrinth](https://modrinth.com/datapack/pause-day-cycle)
+
+<br>
 
 A very lightweight datapack that disables `doDaylightCycle` when nobody is
 online or everyone online is tagged as `afk` (see #detect-afk-players). It's
@@ -55,9 +57,15 @@ You can hook into the pause and resume events using the `pause_day_cycle:pause`
 and `pause_day_cycle:resume` function tags, which will be called whenever the
 day cycle pauses or resumes.
 
+---
+
+<img align="left" src="chickenfix/pack.png" width="80px">
+
 ### Chickenfix
 
 [View and download on Modrinth](https://modrinth.com/datapack/chickenfix)
+
+<br>
 
 A simple but effective brute force fix to chickens suffocating in walls when
 they grow up in a cramped, inhumane chicken farm.
@@ -68,9 +76,15 @@ wall and suffocating. This is only done if the chicken is within five blocks of
 any entity named exactly `chickenfix`, to prevent normal (humane) chicken farms
 from being broken by the same logic that fixes the inhumane ones.
 
+---
+
+<img align="left" src="afk/pack.png" width="80px">
+
 ### Detect AFK Players
 
 [View and download on Modrinth](https://modrinth.com/datapack/detect-afk)
+
+<br>
 
 A simple way to detect AFK players for vanilla or modded servers, which allows
 you to build additional social signalling mechanics and improve the experience
@@ -90,9 +104,15 @@ There is a README included in the pack and viewable in the [afk](afk) directory
 with further instructions for configuration, buildng add-on packs, and
 implementation details.
 
+---
+
+<img align="left" src="afk-sleep/pack.png" width="80px">
+
 ### AFK Sleep
 
 [View and download on Modrinth](https://modrinth.com/datapack/afk-sleep)
+
+<br>
 
 Changes the `playersSleepingPercentage` to allow sleeping while there are AFK
 players on the server.
@@ -107,23 +127,41 @@ sleep for a night to pass.
 | 3              | 2               | 100%                              | 2                                |
 | 3              | 2               | 50%                               | 1                                |
 
+---
+
+<img align="left" src="afk-message/pack.png" width="80px">
+
 ### AFK Message
 
 [View and download on Modrinth](https://modrinth.com/datapack/afk-message)
 
+<br>
+
 Using this datapack will announce to all players on the server when someone
 becomes AFK or returns to the game.
+
+---
+
+<img align="left" src="afk-dim-names/pack.png" width="80px">
 
 ### AFK Dim Names
 
 [View and download on Modrinth](https://modrinth.com/datapack/afk-dim-names)
 
+<br>
+
 Using this datapack colors the names of AFK players gray and moves them to the
 bottom of the player list.
+
+---
+
+<img align="left" src="no-free-deaths/pack.png" width="80px">
 
 ### No Free Deaths
 
 [View and download on Modrinth](https://modrinth.com/datapack/afk-dim-names)
+
+<br>
 
 Adds consequences to death when playing with `keepInventory`. By adding
 carefully thought out penalties, players don't abuse death as a free
@@ -165,34 +203,56 @@ verbose, but can be changed to a custom amount e.g. `90` to lose 90% of levels.
 /scoreboard players set .drop_percentage no_free_deaths.drop_xp.settings [percent]
 ```
 
-### Unreleased data packs
+---
 
-There are data packs in this repository that I haven't released. This is a list
-of them, including the reasons they are not listed on Modrinth yet.
+<img align="left" src="no-sprint/pack.png" width="80px">
 
-#### No Sprint
+### No Sprinting
 
-Disables sprinting. When players sprint, they become stuck in place.
+[View and download on Modrinth](https://modrinth.com/datapack/no-sprinting)
 
-There are a few ways to go about this, but disabling all movement is the most
-consistent and least bad of the methods.
+<br>
 
-This isn't released yet because I haven't playtested it. Don't know if this is
-fun yet.
+When you move 30% faster with very little penalty, or for a slightly larger
+penalty can effectively double your movement speed by sprint-jumping, you shrink
+the scale of the world from a huge environment to a small sandbox where you can
+decide where you are at any given time.
 
-#### No Sprint Swimming
+---
 
-Disables swimming (sprint-swimming). When players try to swim fast, they are
-kicked out of fast swimming back to normal floating.
+<img align="left" src="no-sprint-swimming/pack.png" width="80px">
 
-There isn't a way to control swimming speed the same way there is with ground
-movement speed, so I had to use another method to disable the fast movement.
+### No Sprint-Swimming
 
-This isn't released for the same reason as No Sprint.
+[View and download on Modrinth](https://modrinth.com/datapack/no-sprint-swimming)
 
-#### No Sleep
+<br>
 
-Disables sleeping.
+Sprint-swimming makes water easily traversable. You have a high degree of
+vertical and horizontal movement. I think the game is more fun when water is an
+obstacle rather than an annoyance.
+
+---
+
+<img align="left" src="expensive-boats/pack.png" width="80px">
+
+### Expensive Boats
+
+[View and download on Modrinth](https://modrinth.com/datapack/expensive-boats)
+
+<Br>
+
+Boats shrink the effective size of continents from hours of traversal,
+exploration, distraction, and fun to a few minutes of holding <kbd>w</kbd> and
+scrolling your favorite time-wasting app.
+
+---
+
+<img align="right" src="no-sleep/pack.png" width="80px">
+
+### No Sleep (unreleased)
+
+Disables sleeping. Placeholder icon.
 
 When you disable sleeping, you also need to disable phantoms. When you disable
 phantoms, you need to come up with a way to get phantom membrane. I haven't
@@ -201,44 +261,36 @@ solved the membrane in a way that's fun.
 The best idea I've come up with is to spawn phantoms if a player drinks a potion
 of weakness and tries to use a bed.
 
-#### Expensive Boats
+---
 
-Makes boats cost a netherite ingot.
+<img align="right" src="afk-immunity/pack.png" width="80px">
 
-Boats allow you to move very, very fast. They allow players to cross vast
-distances easily, stay safe from all harm, and they shrink the scope of the
-world more than sprinting does.
+### AFK Immunity (unreleased)
 
-Boats have great utility, though! And especially as a late game tool, for ice
-road travel and connecting civilisations.
+AFK players cannot take any damage and their armor will not lose durability.
 
-This data pack makes them a late-game tool by disallowing their crafting until
-after the player has acquired netherite ingots.
+This is designed so players don't have to consider whether they're in a good
+position to do something that is more critical or productive than playing Block
+Game.
 
-Why netherite? It's like using lead for a keel! You have to have something
-keeping the boat upright. (Let's just use our imaginations that they'd be big
-enough to justify that, instead of being more like a canoe)
+It's recommended that players do not have the `afk` trigger enabled, as it
+becomes an exploit if players can toggle invulnerability whenever they want.
 
-#### AFK Immunity
+This data pack is relatively close to being released, but there is still more
+playtesting required, and probably some more edge cases to consider.
 
-Disables all damage to AFK players.
+---
 
-The goal is to also disable all armor durability too, to prevent people or
-entities from wearing down the armor. However, this presents a lot of edge
-cases. Upon returning, the player could take their armor off before moving their
-mouse, keeping their infinite durability armor. So, if you give it curse of
-binding, they can't take it off, then you remove all curse of binding
-enchantments from their armor. But, if the player already had CoB on a piece of
-armor, now they can take that off too. This means you need to detect whether
-each piece of armor already has CoB, store that in a scoreboard, and selectively
-remove it based on that value. That's more effort than it's worth for me.
+<img align="right" src="afk-kick/pack.png" width="80px">
 
-#### AFK Kick
+### AFK Kick (unreleased)
 
 Kicks players after they have been AFK for a configurable period of time.
 
 This requires the function level to be set higher than I'm generally comfortable
-recommending.
+recommending, but I will likely release this eventually.
+
+---
 
 ## Nix Build System
 
