@@ -69,6 +69,7 @@
         packages = rec {
           afk = pkgs.callPackage ./afk { };
           afk-sleep = pkgs.callPackage ./afk-sleep { };
+          afk-sit = pkgs.callPackage ./afk-sit { };
           afk-message = pkgs.callPackage ./afk-message { };
           afk-dim-names = pkgs.callPackage ./afk-dim-names { };
           afk-kick = pkgs.callPackage ./afk-kick { };
@@ -84,6 +85,7 @@
           all = pkgs.joinDataPacks "clo4-datapacks" [
             afk
             afk-sleep
+            afk-sit
             afk-message
             afk-dim-names
             afk-kick

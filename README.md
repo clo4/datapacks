@@ -21,6 +21,7 @@ Keeping everything in the same repository makes it easier to build stuff fast!
     - [Expensive Boats](#expensive-boats)
     - [Chickenfix](#chickenfix)
     - [No Sleep (unreleased)](#no-sleep-unreleased)
+    - [AFK Sit (unreleased)](#afk-sit-unreleased)
     - [AFK Immunity (unreleased)](#afk-immunity-unreleased)
     - [AFK Kick (unreleased)](#afk-kick-unreleased)
   - [Nix Build System](#nix-build-system)
@@ -271,6 +272,15 @@ solved the membrane in a way that's fun.
 
 The best idea I've come up with is to spawn phantoms if a player drinks a potion
 of weakness and tries to use a bed.
+
+---
+
+<img align="right" src="afk-sit/pack.png" width="80px">
+
+### AFK Sit (unreleased)
+
+Players that go AFK will automatically sit if they are currently standing on the
+ground.
 
 ---
 
