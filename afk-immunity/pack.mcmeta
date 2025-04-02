@@ -1,7 +1,7 @@
 {
   "pack": {
-    "pack_format": 8,
-    "description": "Players are unable to die while AFK",
-    "supported_formats": [8, 71]
+    "pack_format": 71,
+    "description": "AFK players cannot take damage or lose armor durability",
+    "supported_formats": [71, 71]
   }
 }

@@ -23,15 +23,24 @@ item modify entity @s armor.feet afk_immunity:add_unbreakable
 # admin were to remove the `afk` tag from the player, the `afk_immunity:away`
 # function would execute again. This would increase the COB level twice, but
 # only subtract 1 when they get back, making the execution non-idempotent.
-#
-# FIXME: Technically this could still be abused, since a player that has some
-# COB armor that they want to remove the enchantment from could wait to become
-# AFK, put the item on, then come back. But I think this would be enough of a
-# pain in the ass that most people won't bother doing that, if they even think
-# of it in the first place.
 item modify entity @s armor.head afk_immunity:add_cob
 item modify entity @s armor.chest afk_immunity:add_cob
 item modify entity @s armor.legs afk_immunity:add_cob
 item modify entity @s armor.feet afk_immunity:add_cob
+
+item modify entity @s armor.head afk_immunity:hide_unbreakable
+item modify entity @s armor.chest afk_immunity:hide_unbreakable
+item modify entity @s armor.legs afk_immunity:hide_unbreakable
+item modify entity @s armor.feet afk_immunity:hide_unbreakable
+
+# There's an edge-case where, because all the armor will have CoB removed when
+# the player returns, the player could place an item that they want to remove
+# the curse from in an empty slot before returning.
+# However, if there are invisible items occupying the empty slots, this can't
+# be exploited.
+execute unless items entity @s armor.head * run item replace entity @s armor.head with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:head},item_model="minecraft:air"]
+execute unless items entity @s armor.chest * run item replace entity @s armor.chest with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:chest},item_model="minecraft:air"]
+execute unless items entity @s armor.legs * run item replace entity @s armor.legs with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:legs},item_model="minecraft:air"]
+execute unless items entity @s armor.feet * run item replace entity @s armor.feet with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:feet},item_model="minecraft:air"]
 
 tag @s add afk_immunity.has_been_modified
