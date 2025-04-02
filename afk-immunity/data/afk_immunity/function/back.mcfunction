@@ -17,4 +17,4 @@ attribute @s entity_interaction_range modifier remove afk_immunity:no_interactio
 attribute @s oxygen_bonus modifier remove afk_immunity:no_drowning
 attribute @s movement_speed modifier remove afk_immunity:no_movement
 
-tag @s remove afk_immunity.has_been_modified
+tag @s remove afk_immunity.is_immune

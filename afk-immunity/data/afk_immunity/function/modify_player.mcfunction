@@ -50,4 +50,4 @@ attribute @s oxygen_bonus modifier add afk_immunity:no_drowning 10000 add_value
 # afk v1.3 does this by default but this makes it compatible with older versions
 attribute @s movement_speed modifier add afk_immunity:no_movement -10000 add_value
 
-tag @s add afk_immunity.has_been_modified
+tag @s add afk_immunity.is_immune
