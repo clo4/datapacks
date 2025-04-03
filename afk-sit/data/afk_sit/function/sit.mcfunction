@@ -12,7 +12,6 @@ ride @s mount @e[type=armor_stand,tag=afk_sit.active_armor_stand,limit=1]
 
 tag @e[type=armor_stand,tag=afk_sit.active_armor_stand,limit=1] remove afk_sit.active_armor_stand
 
-# Hides the "Press <key> to dismount" text
 title @s times 0 10000000d 0
 title @s title {"text":""}
 title @s subtitle [{"text":"Press "},{"keybind":"key.sneak"},{"text":" to Stand"}]
