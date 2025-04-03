@@ -23,19 +23,19 @@ item modify entity @s armor.feet afk_immunity:add_unbreakable
 # admin were to remove the `afk` tag from the player, the `afk_immunity:away`
 # function would execute again. This would increase the COB level twice, but
 # only subtract 1 when they get back, making the execution non-idempotent.
-item modify entity @s armor.head afk_immunity:add_cob
-item modify entity @s armor.chest afk_immunity:add_cob
-item modify entity @s armor.legs afk_immunity:add_cob
-item modify entity @s armor.feet afk_immunity:add_cob
+item modify entity @s armor.head afk_immunity:add_binding_curse
+item modify entity @s armor.chest afk_immunity:add_binding_curse
+item modify entity @s armor.legs afk_immunity:add_binding_curse
+item modify entity @s armor.feet afk_immunity:add_binding_curse
 
 item modify entity @s armor.head afk_immunity:hide_unbreakable
 item modify entity @s armor.chest afk_immunity:hide_unbreakable
 item modify entity @s armor.legs afk_immunity:hide_unbreakable
 item modify entity @s armor.feet afk_immunity:hide_unbreakable
 
-# There's an edge-case where, because all the armor will have CoB removed when
-# the player returns, the player could place an item that they want to remove
-# the curse from in an empty slot before returning.
+# There's an edge-case where, because all the armor will have curse of binding
+# removed when the player returns, the player could place an item that they want
+# to remove the curse from in an empty slot before returning.
 # However, if there are invisible items occupying the empty slots, this can't
 # be exploited.
 execute unless items entity @s armor.head * run item replace entity @s armor.head with minecraft:black_stained_glass_pane[minecraft:custom_data={slot_filler: true},minecraft:enchantments={binding_curse: 1},minecraft:enchantment_glint_override=false,minecraft:item_name="Unusable Item Slot",tooltip_display={hide_tooltip:true},minecraft:equippable={slot:head},item_model="minecraft:air"]
@@ -45,9 +45,8 @@ execute unless items entity @s armor.feet * run item replace entity @s armor.fee
 
 attribute @s jump_strength modifier add afk_immunity:no_jump -10000 add_value
 attribute @s entity_interaction_range modifier add afk_immunity:no_interaction -10000 add_value
-attribute @s oxygen_bonus modifier add afk_immunity:no_drowning 10000 add_value
-
-# afk v1.3 does this by default but this makes it compatible with older versions
 attribute @s movement_speed modifier add afk_immunity:no_movement -10000 add_value
+attribute @s oxygen_bonus modifier add afk_immunity:no_drowning 10000 add_value
+attribute @s knockback_resistance modifier add afk_immunity:no_knockback 10000 add_value
 
 tag @s add afk_immunity.is_immune
