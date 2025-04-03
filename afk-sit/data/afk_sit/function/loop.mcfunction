@@ -1,6 +1,6 @@
 # Scheduling has to happen before unsit, because if the player gets un-sat and
 # there are no more players sitting, the schedule will be cleared.
-schedule function afk_sit:check_gravity 20t
+schedule function afk_sit:loop 20t
 
 # This also accidentally handles players that dismount their seats. If they
 # stand on the ground, it's very likely that the block at ~0.2 is air, and
@@ -10,4 +10,4 @@ schedule function afk_sit:check_gravity 20t
 # being triggered by returning, since the player still has the is_sitting tag.
 # If this logic were to be changed, it's important to make sure this case is
 # handled.
-execute as @a[tag=afk_sit.is_sitting] at @s if block ~ ~0.2 ~ air run function afk_sit:unsit
+execute as @a[tag=afk_sit.is_sitting] run function afk_sit:check_should_stand

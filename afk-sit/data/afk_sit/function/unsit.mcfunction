@@ -11,4 +11,7 @@ kill @e[type=armor_stand,tag=afk_sit.seat,predicate=!afk_sit:has_player_passenge
 tag @s remove afk_sit.is_sitting
 
 # If this was the last player to be sitting, no need to check gravity.
-execute unless entity @a[tag=afk_sit.is_sitting] run schedule clear afk_sit:check_gravity
+execute unless entity @a[tag=afk_sit.is_sitting] run schedule clear afk_sit:loop
+
+title @s clear
+title @s reset
