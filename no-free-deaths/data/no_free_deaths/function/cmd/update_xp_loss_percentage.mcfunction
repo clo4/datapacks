@@ -1,1 +1,1 @@
-function no_free_deaths:mechanic/drop_xp/api/set_percent_by_difficulty
+function nfd_drop_xp:api/set_percent_by_difficulty
