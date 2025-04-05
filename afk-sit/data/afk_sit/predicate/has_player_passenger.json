@@ -1,9 +1,9 @@
 {
-    "condition": "entity_properties",
-    "entity": "this",
-    "predicate": {
-        "passenger": {
-            "type": "player"
-        }
+  "condition": "entity_properties",
+  "entity": "this",
+  "predicate": {
+    "passenger": {
+      "type": "player"
     }
+  }
 }

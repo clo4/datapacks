@@ -1,9 +1,9 @@
 {
-    "condition": "entity_properties",
-    "entity": "this",
-    "predicate": {
-        "vehicle": {
-            "type": "armor_stand"
-        }
+  "condition": "entity_properties",
+  "entity": "this",
+  "predicate": {
+    "vehicle": {
+      "type": "armor_stand"
     }
+  }
 }
