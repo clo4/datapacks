@@ -107,7 +107,7 @@ bottom of the player list.
 
 ---
 
-<img align="right" src="afk-sit/pack.png" width="80px">
+<img align="left" src="afk-sit/pack.png" width="80px">
 
 ### AFK Sit
 
