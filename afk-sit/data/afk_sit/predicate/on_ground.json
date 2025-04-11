@@ -2,8 +2,6 @@
   "condition": "entity_properties",
   "entity": "this",
   "predicate": {
-    "flags": {
-      "is_on_ground": true
-    }
+    "nbt": "{OnGround:1b}"
   }
 }
