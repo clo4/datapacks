@@ -21,11 +21,11 @@
     "mcmeta-summary": {
       "flake": false,
       "locked": {
-        "lastModified": 1750946360,
-        "narHash": "sha256-0T+WUPioh+zx5FlwBhQSTtqvGNXphp5MH4qrdpZLZbI=",
+        "lastModified": 1751275936,
+        "narHash": "sha256-c06YiazjgPeGsFaQK8P+sp1ARjHWeSUC29CFqSJ1sHg=",
         "owner": "misode",
         "repo": "mcmeta",
-        "rev": "a7e0a4eede8ed6c3e8c27d52440770f498ae4da5",
+        "rev": "9b3aa44515c0ad9d7db7481e04c8709f64683f59",
         "type": "github"
       },
       "original": {
