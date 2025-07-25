@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 48,
     "description": "Removes sleeping.",
-    "supported_formats": [48, 71]
+    "supported_formats": [48, 81]
   }
 }

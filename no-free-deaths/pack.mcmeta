@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 48,
     "description": "No more free deaths. It's keepInventory with consequences (for those that want them).",
-    "supported_formats": [48, 71]
+    "supported_formats": [48, 81]
   }
 }

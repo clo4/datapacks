@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 57,
     "description": "AFK players cannot take damage or lose armor durability",
-    "supported_formats": [57, 71]
+    "supported_formats": [57, 81]
   }
 }

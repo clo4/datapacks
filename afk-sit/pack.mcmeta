@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 57,
     "description": "Players sit down while AFK",
-    "supported_formats": [57, 71]
+    "supported_formats": [57, 81]
   }
 }

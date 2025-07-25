@@ -2,6 +2,6 @@
   "pack": {
     "pack_format": 57,
     "description": "Removes the ability to sprint",
-    "supported_formats": [57, 71]
+    "supported_formats": [57, 81]
   }
 }
