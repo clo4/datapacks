@@ -13,6 +13,7 @@ buildDataPack {
     done
     popd
     touch **
+    patch -p0 -f < return_run_backport.patch
   '';
 
   include = [ "LICENSE" ];
