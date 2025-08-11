@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "pack_format": 8,
+    "supported_formats": [8, 81],
+    "description": "Slow the day cycle by pausing for a configurable duration at specific points"
+  }
+}
