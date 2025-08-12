@@ -1,46 +1,51 @@
 # Slow Day
 
-Slow Day slows down the day cycle by extending the day at particular points, rather
-than simply making the sun move slower. This is similar to the approach taken in
-Mario Kart World, where the day cycle takes a specific number of minutes but will
-pause at particularly scenic moments.
+Slow Day slows down the day cycle by extending the day at specific points, rather than simply making the sun move slower. This approach is similar to Mario Kart World, where the day cycle takes a set number of minutes but pauses at particularly scenic moments.
 
-This is not ported to older versions due to a visual glitch that was fixed at
-some point in the 1.21 cycle, where the sun/moon would continue moving briefly
-after the doDaylightCycle gamerule was changed. For vanilla players, this is a
-minor glitch, but for players using shaders, it was extremely noticeable because
-the shadows would change instantly.
+By default, the day cycle pauses at the following times:
 
-This is designed to be extensible. If you don't like the default durations, you
-can just change them:
+| Time | Duration | slow_day.settings | Ticks |
+|------|----------|-------------------|-------|
+| Sunrise | 1 minute | `.sunrise_ticks` | 1200 |
+| Mid morning | 2 minutes | `.mid_morning_ticks` | 2400 |
+| Noon | 2 minutes | `.noon_ticks` | 2400 |
+| Mid afternoon | 2 minutes | `.mid_afternoon_ticks` | 2400 |
+| Sunset | 1 minute | `.sunset_ticks` | 1200 |
 
-    /scoreboard players set .midday_ticks slow_day.data 3600
+This data pack is compatible with Pause Day Cycle. When the day cycle is paused (no players online or all are AFK) this data pack will stop checking, and resume when there is an active player.
 
-If you don't like the times that the day pauses, you can replace this too. It's a
-little more complicated, because you need to create a data pack, but it's a *very*
-simple data pack.
+Toggling day cycle state (paused -> unpaused, unpaused -> paused) works as expected.
 
-First, create `data/slow_day/tags/function/check.json` with the following contents:
+## Customization
 
-```json
-{
-    "values": [
-        "slow_day_overrides:check"
-    ],
-    "replace": true
-}
-```
+### Adjusting Default Durations
 
-Now, create `data/slow_day_overrides/function/check.mcfunction`, with an adaptation
-of the following contents:
+If you don't like the default pause durations, change them using these commands:
 
 ```mcfunction
-execute if score .time slow_day.data matches 0..99 run scoreboard players set .delay slow_day.data 2400
-execute if score .time slow_day.data matches 6000..6099 run scoreboard players set .delay slow_day.data 2400
-execute if score .time slow_day.data matches 12000..12099 run scoreboard players set .delay slow_day.data 2400
+/scoreboard players set .sunrise_ticks slow_day.settings 3600
+/scoreboard players set .sunset_ticks slow_day.settings 3600
+/scoreboard players set .mid_morning_ticks slow_day.settings 3600
+/scoreboard players set .mid_afternoon_ticks slow_day.settings 3600
+/scoreboard players set .noon_ticks slow_day.settings 3600
 ```
 
-You can have as many lines as you want here, or as few as you want. You check if
-the time is in a range of 100 values using `matches`, and set the `.delay` to a
-number of ticks to wait before resuming the day cycle - a multiple of 100, as
-this value will be decremented 100-at-a-time.
+### Custom Pause Times
+
+To change when the day pauses, create a simple data pack override:
+
+**Create `data/slow_day/function/check.mcfunction`**
+
+This function will be called to check whether time should pause. Set the `.extended_daytime` value in the `slow_day.data` scoreboard to the number of ticks before the day cycle resumes. Since this function runs every 100 ticks, check for time ranges rather than exact values:
+
+```mcfunction
+execute if score .time slow_day.data matches 0..99 run scoreboard players set .extended_daytime slow_day.data 2400
+execute if score .time slow_day.data matches 6000..6099 run scoreboard players set .extended_daytime slow_day.data 3600
+execute if score .time slow_day.data matches 12000..12099 run scoreboard players set .extended_daytime slow_day.data 2400
+```
+
+Since the check runs every 100 ticks, use multiples of 100 for the extended daytime value (each 100 ticks = 5 seconds).
+
+## Compatibility
+
+This data pack is not ported to older versions due to a visual glitch that was fixed in the 1.21 cycle. In earlier versions, the sun and moon would continue moving briefly after the `doDaylightCycle` gamerule changed. This is a minor glitch for vanilla players, but extremely noticeable for shader users because shadows change instantly.

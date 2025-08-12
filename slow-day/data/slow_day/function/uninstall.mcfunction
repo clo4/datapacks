@@ -1,2 +1,2 @@
 schedule clear slow_day:loop
-scoreboard objectives remove slow_day.data
+function slow_day:migration/down
