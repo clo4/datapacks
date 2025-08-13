@@ -1,7 +1,7 @@
 { buildDataPack }:
 buildDataPack {
   name = "longer-days";
-  version = "1.1.1";
+  version = "1.0.0";
 
   src = ./.;
 
