@@ -1,6 +1,6 @@
 { buildDataPack }:
 buildDataPack {
-  name = "slow-day";
+  name = "longer-days";
   version = "1.1.1";
 
   src = ./.;
