@@ -1,3 +1,6 @@
+# The time of day only needs to be updated if we're actually going to check it.
+execute store result score .time longer_days.data run time query daytime
+
 execute if score .time longer_days.data matches 0..99 run scoreboard players operation .extended_daytime longer_days.data = .sunrise longer_days.settings
 execute if score .time longer_days.data matches 2600..2699 run scoreboard players operation .extended_daytime longer_days.data = .mid_morning longer_days.settings
 execute if score .time longer_days.data matches 5950..6049 run scoreboard players operation .extended_daytime longer_days.data = .noon longer_days.settings
