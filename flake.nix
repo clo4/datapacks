@@ -54,6 +54,7 @@
             pkgs.unzip
             pkgs.fish
             pkgs.build-and-copy
+            pkgs.typos
             formatter
           ];
         };
