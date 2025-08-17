@@ -34,16 +34,28 @@ when there is an active player.
 
 ## Customization
 
+This data pack is designed from the ground up to be easy to extend and tweak.
+You can adjust the duration of each pause, or even entirely change when the
+pauses occur.
+
 ### Adjusting Default Durations
 
-If you don't like the default pause durations, change them using these commands:
+If you don't like the default pause durations, change them using these commands,
+replacing `TICKS` with the number of ticks to extend the day by. 1 minute is
+1200 ticks, so to extend the day by 3 minutes at noon, you would use `3600`.
 
 ```mcfunction
-/scoreboard players set .sunrise longer_days.settings 3600
-/scoreboard players set .sunset longer_days.settings 3600
-/scoreboard players set .morning longer_days.settings 3600
-/scoreboard players set .afternoon longer_days.settings 3600
-/scoreboard players set .noon longer_days.settings 3600
+/scoreboard players set .sunrise longer_days.settings TICKS
+/scoreboard players set .morning longer_days.settings TICKS
+
+/scoreboard players set .noon longer_days.settings TICKS
+
+/scoreboard players set .afternoon longer_days.settings TICKS
+/scoreboard players set .sunset longer_days.settings TICKS
+
+/scoreboard players set .twilight_evening longer_days.settings TICKS
+/scoreboard players set .midnight longer_days.settings TICKS
+/scoreboard players set .twilight_morning longer_days.settings TICKS
 ```
 
 ### Custom Pause Times
@@ -67,6 +79,14 @@ execute if score .time longer_days.data matches 12000..12099 run scoreboard play
 
 Since the check runs every 100 ticks, use multiples of 100 for the extended
 daytime value (each 100 ticks = 5 seconds).
+
+You can see how the default logic works in this file:
+[check.mcfunction](./data/longer_days/function/check.mcfunction)
+
+To make sure your override is loaded, it needs be loaded "after" the longer-days
+data pack. You can do this by manually ordering the data packs when creating the
+world, naming your custom data pack starting with a letter after "L", or
+disabling then enabling it.
 
 ## Compatibility
 
