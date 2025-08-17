@@ -52,7 +52,7 @@ if test (count $datapacks_to_build) -eq 0
 end
 
 for result in result*
-    rm $result
+    test -L $result; and rm $result
 end
 
 if test (count $datapacks_to_build) -eq 1
