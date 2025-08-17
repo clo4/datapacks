@@ -8,12 +8,12 @@ particularly scenic moments.
 By default, the day cycle pauses at the following times:
 
 | Time          | longer_days.settings | Duration  | Ticks |
-| ------------- | ------------------- | --------- | ----- |
-| Sunrise       | `.sunrise`          | 1 minute  | 1200  |
-| Mid morning   | `.mid_morning`      | 2 minutes | 2400  |
-| Midday (noon) | `.midday`           | 2 minutes | 2400  |
-| Mid afternoon | `.mid_afternoon`    | 2 minutes | 2400  |
-| Sunset        | `.sunset`           | 1 minute  | 1200  |
+| ------------- | -------------------- | --------- | ----- |
+| Sunrise       | `.sunrise`           | 1 minute  | 1200  |
+| Mid morning   | `.mid_morning`       | 2 minutes | 2400  |
+| Midday (noon) | `.midday`            | 1 minute  | 1200  |
+| Mid afternoon | `.mid_afternoon`     | 2 minutes | 2400  |
+| Sunset        | `.sunset`            | 1 minute  | 1200  |
 
 There are also three times that don't extend the day by default but can be set
 with a duration to extend.
@@ -48,9 +48,9 @@ If you don't like the default pause durations, change them using these commands:
 
 ### Custom Pause Times
 
-To change when the day pauses, create a simple data pack override:
+To change when the day pauses, create a simple data pack to override the `longer_days:check` function:
 
-**Create `data/longer_days/function/check.mcfunction`**
+**`YOUR_DATA_PACK_NAME/data/longer_days/function/check.mcfunction`**
 
 This function will be called to check whether time should pause. Set the
 `.extended_daytime` value in the `longer_days.data` scoreboard to the number of
@@ -58,6 +58,7 @@ ticks before the day cycle resumes. Since this function runs every 100 ticks,
 check for time ranges rather than exact values:
 
 ```mcfunction
+execute store result score .time longer_days.data run time query daytime
 execute if score .time longer_days.data matches 0..99 run scoreboard players set .extended_daytime longer_days.data 2400
 execute if score .time longer_days.data matches 6000..6099 run scoreboard players set .extended_daytime longer_days.data 3600
 execute if score .time longer_days.data matches 12000..12099 run scoreboard players set .extended_daytime longer_days.data 2400
