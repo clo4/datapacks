@@ -215,6 +215,20 @@ decide where you are at any given time.
 
 ---
 
+<img align="left" src="longer-days/pack.png" width="80px">
+
+### Longer Days
+
+[View and download on Modrinth](https://modrinth.com/datapack/longer-days)
+
+<br>
+
+Extends the length of the day by pausing the day cycle at specific times for a
+configurable duration. Easy to extend, easy to modify, and fully compatible with
+Pause Day Cycle.
+
+---
+
 <img align="left" src="no-sprint-swimming/pack.png" width="80px">
 
 ### No Sprint-Swimming
