@@ -10,9 +10,9 @@ By default, the day cycle pauses at the following times:
 | Time          | longer_days.settings | Duration  | Ticks |
 | ------------- | -------------------- | --------- | ----- |
 | Sunrise       | `.sunrise`           | 1 minute  | 1200  |
-| Mid morning   | `.morning`           | 2 minutes | 2400  |
+| Mid morning   | `.morning`           | 1 minutes | 1200  |
 | Midday (noon) | `.midday`            | 1 minute  | 1200  |
-| Mid afternoon | `.afternoon`         | 2 minutes | 2400  |
+| Mid afternoon | `.afternoon`         | 1 minutes | 1200  |
 | Sunset        | `.sunset`            | 1 minute  | 1200  |
 
 There are also three times that don't extend the day by default but can be set

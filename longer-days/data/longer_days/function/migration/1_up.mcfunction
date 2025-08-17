@@ -9,15 +9,12 @@ scoreboard objectives add longer_days.settings dummy
 scoreboard players set .extended_daytime longer_days.data 0
 
 scoreboard players set #one_minute longer_days.settings 1200
-scoreboard players set #two_minutes longer_days.settings 2400
 
 scoreboard players operation .sunrise longer_days.settings = #one_minute longer_days.settings
-scoreboard players operation .sunset longer_days.settings = #one_minute longer_days.settings
-
+scoreboard players operation .morning longer_days.settings = #one_minute longer_days.settings
 scoreboard players operation .midday longer_days.settings = #one_minute longer_days.settings
-
-scoreboard players operation .morning longer_days.settings = #two_minutes longer_days.settings
-scoreboard players operation .afternoon longer_days.settings = #two_minutes longer_days.settings
+scoreboard players operation .afternoon longer_days.settings = #one_minute longer_days.settings
+scoreboard players operation .sunset longer_days.settings = #one_minute longer_days.settings
 
 # These are present for players to set if they want to extend the night, but are
 # never enabled by default.
