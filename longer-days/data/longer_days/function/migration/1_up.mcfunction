@@ -16,8 +16,8 @@ scoreboard players operation .sunset longer_days.settings = #one_minute longer_d
 
 scoreboard players operation .midday longer_days.settings = #one_minute longer_days.settings
 
-scoreboard players operation .mid_morning longer_days.settings = #two_minutes longer_days.settings
-scoreboard players operation .mid_afternoon longer_days.settings = #two_minutes longer_days.settings
+scoreboard players operation .morning longer_days.settings = #two_minutes longer_days.settings
+scoreboard players operation .afternoon longer_days.settings = #two_minutes longer_days.settings
 
 # These are present for players to set if they want to extend the night, but are
 # never enabled by default.

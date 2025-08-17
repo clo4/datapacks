@@ -10,19 +10,19 @@ By default, the day cycle pauses at the following times:
 | Time          | longer_days.settings | Duration  | Ticks |
 | ------------- | -------------------- | --------- | ----- |
 | Sunrise       | `.sunrise`           | 1 minute  | 1200  |
-| Mid morning   | `.mid_morning`       | 2 minutes | 2400  |
+| Mid morning   | `.morning`           | 2 minutes | 2400  |
 | Midday (noon) | `.midday`            | 1 minute  | 1200  |
-| Mid afternoon | `.mid_afternoon`     | 2 minutes | 2400  |
+| Mid afternoon | `.afternoon`         | 2 minutes | 2400  |
 | Sunset        | `.sunset`            | 1 minute  | 1200  |
 
 There are also three times that don't extend the day by default but can be set
 with a duration to extend.
 
 | Time               | longer_days.settings |
-| ------------------ | ------------------- |
-| Twilight (evening) | `.twilight_evening` |
-| Midnight           | `.midnight`         |
-| Twilight (morning) | `.twilight_morning` |
+| ------------------ | -------------------- |
+| Twilight (evening) | `.twilight_evening`  |
+| Midnight           | `.midnight`          |
+| Twilight (morning) | `.twilight_morning`  |
 
 Toggling day cycle state (paused -> unpaused, unpaused -> paused) works as
 expected. However, if the day cycle is disabled by this data pack, attempting to
@@ -41,14 +41,15 @@ If you don't like the default pause durations, change them using these commands:
 ```mcfunction
 /scoreboard players set .sunrise longer_days.settings 3600
 /scoreboard players set .sunset longer_days.settings 3600
-/scoreboard players set .mid_morning longer_days.settings 3600
-/scoreboard players set .mid_afternoon longer_days.settings 3600
+/scoreboard players set .morning longer_days.settings 3600
+/scoreboard players set .afternoon longer_days.settings 3600
 /scoreboard players set .noon longer_days.settings 3600
 ```
 
 ### Custom Pause Times
 
-To change when the day pauses, create a simple data pack to override the `longer_days:check` function:
+To change when the day pauses, create a simple data pack to override the
+`longer_days:check` function:
 
 **`YOUR_DATA_PACK_NAME/data/longer_days/function/check.mcfunction`**
 
