@@ -30,3 +30,6 @@ execute if score .do_daylight_cycle longer_days.data matches 1 run function long
 
 execute if score .extended_daytime longer_days.data matches 1.. run gamerule doDaylightCycle false
 execute if score .extended_daytime longer_days.data matches ..0 run gamerule doDaylightCycle true
+
+# This is only for debugging, to visualize the change to the gamerule.
+execute store result score .do_daylight_cycle longer_days.data run gamerule doDaylightCycle
