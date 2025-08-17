@@ -87,11 +87,3 @@ To make sure your override is loaded, it needs be loaded "after" the longer-days
 data pack. You can do this by manually ordering the data packs when creating the
 world, naming your custom data pack starting with a letter after "L", or
 disabling then enabling it.
-
-## Compatibility
-
-This data pack is not ported to older versions due to a visual glitch that was
-fixed in the 1.21 cycle. In earlier versions, the sun and moon would continue
-moving briefly after the `doDaylightCycle` gamerule changed. This is a minor
-glitch for vanilla players, but extremely noticeable for shader users because
-shadows change instantly.
