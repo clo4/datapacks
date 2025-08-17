@@ -12,7 +12,7 @@ scoreboard players set #one_minute longer_days.settings 1200
 
 scoreboard players operation .sunrise longer_days.settings = #one_minute longer_days.settings
 scoreboard players operation .morning longer_days.settings = #one_minute longer_days.settings
-scoreboard players operation .midday longer_days.settings = #one_minute longer_days.settings
+scoreboard players operation .noon longer_days.settings = #one_minute longer_days.settings
 scoreboard players operation .afternoon longer_days.settings = #one_minute longer_days.settings
 scoreboard players operation .sunset longer_days.settings = #one_minute longer_days.settings
 
