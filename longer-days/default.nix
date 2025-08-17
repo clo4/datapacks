@@ -15,5 +15,8 @@ buildDataPack {
     touch **
   '';
 
-  include = [ "LICENSE" ];
+  include = [
+    "LICENSE"
+    "README.md"
+  ];
 }
