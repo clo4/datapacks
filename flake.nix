@@ -54,6 +54,7 @@
             pkgs.unzip
             pkgs.fish
             pkgs.build-and-copy
+            pkgs.typos
             formatter
           ];
         };
@@ -81,6 +82,7 @@
           no-sprint-swimming = pkgs.callPackage ./no-sprint-swimming { };
           no-sleep = pkgs.callPackage ./no-sleep { };
           expensive-boats = pkgs.callPackage ./expensive-boats { };
+          longer-days = pkgs.callPackage ./longer-days { };
 
           all = pkgs.joinDataPacks "clo4-datapacks" [
             afk
@@ -97,6 +99,7 @@
             no-sprint-swimming
             no-sleep
             expensive-boats
+            longer-days
           ];
           default = all;
         };
