@@ -1,0 +1,34 @@
+namespace pause_day_cycle
+
+
+#minecraft:load
+function load:
+    /scoreboard objectives add pause_day_cycle.state dummy
+
+    if not state.has_loaded_once:
+        state.has_loaded_once = 1
+        state.is_paused = 0
+
+    <- loop
+
+
+function loop:
+    if not state.is_paused and @a[tag=afk] == @a:
+        state.is_paused = 1
+        state.do_daylight_cycle <- /gamerule do_daylight_cycle
+        state.do_weather_cycle <- /gamerule do_weather_cycle
+        /gamerule do_daylight_cycle false
+        /gamerule do_weather_cycle false
+        <- #pause
+    else if @a[tag=!afk]:
+        state.is_paused = 0
+
+        if state.do_daylight_cycle:
+            /gamerule do_daylight_cycle true
+
+        if state.do_weather_cycle:
+            /gamerule do_weather_cycle true
+
+        <- #resume
+
+    /schedule function $(loop) 5s

@@ -20,14 +20,14 @@ function load:
     -- .threshold is a user-configurable setting that controls how many seconds of inactivity
     -- it takes for a player to become AFK. 3600 ticks is 180 seconds - this is a very intentional
     -- default. It's long enough to yellow without going AFK, but not long enough to brown :^)
-    if settings.threshold == undefined or settings.threshold <= 0:
+    if not settings.threshold:
         settings.threshold = 3600
 
     <- loop
 
 
 function loop:
-    /schedule function afk:loop 30t replace
+    /schedule function $(loop) 30t replace
 
     for @a function:
         rotation_prev = rotation
@@ -61,7 +61,7 @@ function loop:
             -- If you update this, remember to update afk:loop!
             ticks += 30
             if @s[tag=!afk] and ticks >= settings.threshold:
-                /execute at @s run function afk:tag_away
+                /execute at @s run function $(tag_away)
         else:
             <- reset_player
 

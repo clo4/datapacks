@@ -1,0 +1,4 @@
+name = "pause_day_cycle"
+
+[compiler]
+transparent-commands-template = "26.1"
