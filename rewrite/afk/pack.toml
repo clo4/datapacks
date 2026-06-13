@@ -1,0 +1,4 @@
+name = "afk"
+
+[compiler]
+transparent-commands-template = "26.1"

@@ -1,0 +1,88 @@
+namespace afk
+
+
+#minecraft:load
+function load:
+    -- TODO: When triggers are supported, or a way to define
+    -- how an objective is rendered, rename this to `afk` (unnamespaced)
+    -- This is NOT FINAL!
+    /scoreboard objectives add afk.afk trigger
+
+    -- Public API
+    /scoreboard objectives add afk.ticks dummy
+    /scoreboard objectives add afk.settings dummy
+    /scoreboard objectives add afk.left_game minecraft.custom:minecraft.leave_game
+
+    -- Private API
+    /scoreboard objectives add afk.rotation dummy
+    /scoreboard objectives add afk.rotation_prev dummy
+
+    -- .threshold is a user-configurable setting that controls how many seconds of inactivity
+    -- it takes for a player to become AFK. 3600 ticks is 180 seconds - this is a very intentional
+    -- default. It's long enough to yellow without going AFK, but not long enough to brown :^)
+    if settings.threshold == undefined or settings.threshold <= 0:
+        settings.threshold = 3600
+
+    <- loop
+
+
+function loop:
+    /schedule function afk:loop 30t replace
+
+    for @a function:
+        rotation_prev = rotation
+
+        -- Horizontal rotation alone is used to detect activity because it's functionally
+        -- impossible to move the mouse vertically without also moving it horizontally at
+        -- all, hence the huge scaling factor to magnify this.
+        rotation = @s.Rotation[0] * 100000
+
+        -- NOTE: This is detecting the trigger, not whether a player is currently AFK.
+        if afk:
+            afk = 0
+            if ticks < settings.threshold:
+                ticks = settings.threshold
+
+            -- By guaranteeing that the current and previous rotations are the same, and with the ticks set to the threshold,
+            -- this will trigger the condition to mark the player as AFK if they currently aren't.
+            rotation_prev = rotation
+            <- enable_afk
+
+        -- Joining the game always counts as activity, so the ticks inactive should be reset.
+        -- There isn't a way to detect joining directly, but you can detect leaving, so playerss
+        -- with a leave_game score must have joined since the last check.
+        if left_game:
+            <- reset_player
+            left_game = undefined
+        else if rotation == rotation_prev:
+            -- Current rotation is the same as the previous rotation, so if after incrementing the
+            -- ticks the player has been inactive for, if they've been away for longer than the
+            -- threshold and don't have the AFK tag yet, tag them.
+            -- If you update this, remember to update afk:loop!
+            ticks += 30
+            if @s[tag=!afk] and ticks >= settings.threshold:
+                /execute at @s run function afk:tag_away
+        else:
+            <- reset_player
+
+
+function reset_player:
+    -- Current rotation is different from previous rotation. If tagged as AFK, that means
+    -- the player has returned, so their tag should be removed and any functions should be
+    -- called before the scoreboard value is reset (which allows any functions to use the
+    -- value).
+    if @s[tag=afk]:
+        /tag @s remove afk
+        <- #back
+    ticks = 0
+
+
+function tag_away:
+    /tag @s add afk
+    left_game = 0
+    <- #away
+
+
+-- This function only exists because there is no syntax for "enabling" a player
+function enable_afk:
+    /scoreboard players enable @s afk.afk
